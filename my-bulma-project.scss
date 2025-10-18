@@ -1,0 +1,41 @@
+// Paleta de colores "Organic & Fresh"
+$organic-green: #2E7D32;
+$citrus-orange: #F57C00;
+$dark-text: #333D29;
+$light-bg: #F8F9F8;
+$light-grey: #E0E0E0;
+
+// Path to Bulma's sass folder
+@use "bulma/sass" with (
+  // Define una fuente
+  $family-primary: '"Poppins", sans-serif',
+  
+  // Asocia los colores a las variables iniciales de Bulma
+  $primary: $organic-green,
+  $link: $citrus-orange,
+  
+  // Usa nuestros tonos para la escala de grises
+  $grey-dark: $dark-text,
+  $grey-light: $light-grey,
+  $background: $light-bg,
+
+  // Pequeños ajustes para un look más moderno
+  $control-border-width: 2px,
+  $input-shadow: none,
+  $radius-large: 8px,
+
+  $navbar-item-color: $light-bg,
+  $navbar-item-img-max-height: 5rem
+);
+
+// Importa la Google Font que elijas
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+
+// === LA SOLUCIÓN CORRECTA Y SIMPLE ===
+// Sobrescribe el estilo del hover manualmente después de la configuración.
+// Esto aprovecha la "cascada" de CSS.
+a:hover {
+  color: $dark-text;
+}
+

@@ -1,0 +1,60 @@
+// Navbar.scss
+
+// Variable para el amarillo característico de Éxito
+$exito-yellow: #2E7D32;
+
+// Estilos para la barra de navegación
+.navbar.is-exito {
+  background-color: $exito-yellow;
+
+  // Ajustes para centrar la barra de búsqueda y darle más espacio
+  .navbar-start {
+    flex-grow: 1;
+    justify-content: center;
+    // Evita que el buscador se pegue a los íconos de la derecha en pantallas medianas
+    margin-right: 2rem; 
+  }
+  
+  // Estilos para el campo de búsqueda
+  .navbar-item .field.has-addons {
+    width: 100%;
+    max-width: 500px; 
+    
+    .input.is-rounded {
+        border-color: transparent;
+        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+        &:focus {
+            box-shadow: 0 0 0 0.125em rgba(0, 0, 0, 0.25);
+        }
+    }
+    
+    .button.is-dark {
+      background-color: #555; 
+      &:hover {
+        background-color: #333;
+      }
+    }
+  }
+}
+
+// Clase personalizada para los íconos de la derecha (Notificaciones, etc.)
+.navbar-item.is-icon-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  
+  .icon {
+    margin-bottom: 2px;
+  }
+}
+
+// Ajustes al logo para que se vea bien
+
+
+.navbar-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
