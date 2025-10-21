@@ -3,7 +3,7 @@ import './Navbar.scss'; // Importamos nuestros estilos personalizados
 import '../../../my-bulma-project.scss';
 import logoMarquetazo from '../../assets/images/Marquetazo.png';
 
-const Navbar = () => {
+const Navbar = ({onCartClick }) => {
   // Estado para controlar si el menú móvil está activo o no
   const [isActive, setIsActive] = useState(false);
 
@@ -20,11 +20,11 @@ const Navbar = () => {
         </a>
         
         {/* El botón de hamburguesa para móviles */}
-        <a 
-          role="button" 
+         <a
+          role="button"
           className={`navbar-burger ${isActive ? 'is-active' : ''}`}
-          aria-label="menu" 
-          aria-expanded={isActive} 
+          aria-label="menu"
+          aria-expanded={isActive}
           onClick={toggleMenu}
         >
           <span aria-hidden="true"></span>
@@ -70,7 +70,7 @@ const Navbar = () => {
             <span className="icon"><i className="fas fa-user"></i></span>
             <span className="is-size-7">Mi cuenta</span>
           </a>
-          <a className="navbar-item is-icon-text">
+           <a className="navbar-item is-icon-text" onClick={onCartClick}>
             <span className="icon"><i className="fas fa-shopping-cart"></i></span>
             <span className="is-size-7">Carrito</span>
           </a>
