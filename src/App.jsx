@@ -1,5 +1,6 @@
 import '../my-bulma-project.scss'
-import Navbar from './features/Navbar/Navbar'
+import Home from './features/home/Home';
+import Navbar from './features/navbar/Navbar';
 import { useProducts } from './hooks/useProducts'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
      <Navbar />
+     <Home />
     </>
   )
 }
