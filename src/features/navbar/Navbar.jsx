@@ -1,5 +1,3 @@
-// src/features/Navbar/Navbar.jsx
-
 import React, { useState } from 'react';
 import './Navbar.scss';
 import '../../../my-bulma-project.scss';
@@ -23,7 +21,6 @@ const SubcategoryPanel = ({ category }) => {
 };
 
 
-// --- Componente Principal Navbar ---
 const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -50,7 +47,6 @@ const Navbar = () => {
         </div>
         
         <div className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
-           {/* --- SECCIÓN RESTAURADA --- */}
            <div className="navbar-start">
              <div className="navbar-item">
                <div className="field has-addons">
