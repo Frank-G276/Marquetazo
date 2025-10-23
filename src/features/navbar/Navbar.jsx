@@ -33,9 +33,17 @@ const Navbar = ({ onCartClick }) => {
     <>
       <nav className="navbar is-exito" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
+        
           <a className="navbar-item" href="#">
             <img src={logoMarquetazo} alt="Logo Marquetazo" />
           </a>
+
+          <div className="navbar-item is-clickable" onClick={() => setIsSidebarOpen(true)}>
+            <span className="icon-text has-text-weight-bold">
+              <span className="icon"><i className="fas fa-bars"></i></span>
+              <span>Menú</span>
+            </span>
+          </div>
 
           {/* Botón de hamburguesa para móviles */}
           <a
