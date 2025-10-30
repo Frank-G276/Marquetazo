@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import './Register.scss'; // Reutilizaremos un estilo similar al de Login
+import { Link } from "react-router-dom";
+
 
 const Register = () => {
   // Estado para todos los campos del formulario
@@ -192,7 +194,9 @@ const Register = () => {
                 <div className="register-links has-text-centered mt-4">
                   <p className="is-size-7">
                     ¿Ya tienes cuenta?{' '}
-                    <a href="/login" className="is-link">Inicia sesión</a>
+                    <Link to = "/login">
+                      <a className="is-link">Inicia sesión</a>
+                    </Link>
                   </p>
                 </div>
               </div>

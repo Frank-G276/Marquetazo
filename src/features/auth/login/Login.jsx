@@ -141,7 +141,9 @@ const Login = () => {
                     <Link to="/register" className="is-link">Regístrate aquí</Link>
                   </p>
                   <p className="is-size-7 mt-2">
-                    <a href="/forgot-password" className="is-link">¿Olvidaste tu contraseña?</a>
+                    <Link to = "/forgot-password">
+                      <a className="is-link">¿Olvidaste tu contraseña?</a>
+                    </Link>
                   </p>
                 </div>
 

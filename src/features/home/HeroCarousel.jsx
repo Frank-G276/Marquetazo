@@ -6,6 +6,7 @@ import Hero1 from '../../assets/images/home/Hero1.jpg';
 import Hero2 from '../../assets/images/home/Hero2.jpg';
 import Hero3 from '../../assets/images/home/Hero3.jpg';
 
+
 // --- Imágenes de ejemplo para las promociones ---
 // (Puedes reemplazar esto con tus propias imágenes)
 const promoImages = [

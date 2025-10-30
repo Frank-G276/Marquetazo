@@ -4,7 +4,9 @@ import '../../../my-bulma-project.scss';
 import logoMarquetazo from '../../assets/images/Marquetazo.png';
 import { categoryStructure } from '../../data/categoryStructure';
 import './Sidebar.scss';
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const SubcategoryPanel = ({ category }) => {
   return (
@@ -21,12 +23,15 @@ const SubcategoryPanel = ({ category }) => {
   );
 };
 
+
+
 const Navbar = ({ onCartClick }) => {
   // Estado para controlar el menú móvil y el sidebar
   const [isActive, setIsActive] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
 
+  const navigate = useNavigate();
   const toggleMenu = () => setIsActive(!isActive);
   const handleMouseLeave = () => setActiveCategory(null);
 
@@ -46,7 +51,7 @@ const Navbar = ({ onCartClick }) => {
             </span>
           </div>
 
-          
+        
           <a
             role="button"
             className={`navbar-burger ${isActive ? 'is-active' : ''}`}
@@ -98,14 +103,14 @@ const Navbar = ({ onCartClick }) => {
               <span className="icon"><i className="fas fa-bell"></i></span>
               <span className="is-size-7"> Login </span>
             </Link>
-            <a className="navbar-item is-icon-text">
+            <Link className="navbar-item is-icon-text">
               <span className="icon"><i className="fas fa-user"></i></span>
               <span className="is-size-7">Mi cuenta</span>
-            </a>
-            <a className="navbar-item is-icon-text" onClick={onCartClick}>
+            </Link>
+            <Link className="navbar-item is-icon-text" onClick={onCartClick}>
               <span className="icon"><i className="fas fa-shopping-cart"></i></span>
               <span className="is-size-7">Carrito</span>
-            </a>
+            </Link>
           </div>
         </div>
       </nav>

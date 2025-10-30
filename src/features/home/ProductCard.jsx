@@ -1,7 +1,10 @@
 import React from 'react';
 import './ProductCard.scss'; // Crearemos este archivo ahora
+import { useCart } from "../../features/ShoppingCart/CartContext";
+
 
 const ProductCard = ({ product }) => {
+   const { addToCart } = useCart();
   return (
     // Definimos las columnas de Bulma para que sea responsive
     <div className="column is-one-quarter-desktop is-half-tablet">
@@ -27,7 +30,7 @@ const ProductCard = ({ product }) => {
         </div>
         <footer className="card-footer">
           {/* Este botón usará $organic-green como color de fondo */}
-          <a href="#" className="card-footer-item button is-primary is-fullwidth">
+          <a href="#" className="card-footer-item button is-primary is-fullwidth" onClick={() => addToCart(product)}>
             <span className="icon">
               {/* Asegúrate de tener Font Awesome importado en tu index.html */}
               <i className="fas fa-cart-plus"></i>
