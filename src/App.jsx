@@ -6,6 +6,7 @@ import Navbar from './features/navbar/Navbar';
 import ShoppingCart from './features/ShoppingCart/ShoppingCart';
 import { useProducts } from './hooks/useProducts'
 import Login from './features/auth/login/Login';
+import { Routes, Route } from 'react-router-dom';
 import Register from './features/auth/register/Register';
 
 function App() {
@@ -19,15 +20,28 @@ function App() {
   const toggleCart = () => setIsCartOpen(!isCartOpen);
 
   return (
-    <>
-    {/*
-      <Navbar onCartClick={toggleCart} />
-      <Home />
-      <ShoppingCart isOpen={isCartOpen} onClose={toggleCart} carrito={carrito} />
-    */}
-      <Login />
-      <Register />
-    </>
+    <Routes>
+    
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+    </Route>
+
+    <Route path="/login" element={<Login />} />
+
+    <Route path="/register" element={<Register />} />
+    
+    <Route path="*" element={
+      <section className="section">
+        <div className="container has-text-centered">
+          <h1 className="title is-1">Error 404</h1>
+          <p className="subtitle is-3">Página No Encontrada</p>
+          <a href="/" className="button is-primary">
+            Volver al inicio
+          </a>
+        </div>
+      </section>
+    } />
+  </Routes>
   );
 }
 

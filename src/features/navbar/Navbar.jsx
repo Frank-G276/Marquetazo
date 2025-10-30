@@ -4,6 +4,7 @@ import '../../../my-bulma-project.scss';
 import logoMarquetazo from '../../assets/images/Marquetazo.png';
 import { categoryStructure } from '../../data/categoryStructure';
 import './Sidebar.scss';
+import { Link } from 'react-router-dom';
 
 const SubcategoryPanel = ({ category }) => {
   return (
@@ -34,9 +35,9 @@ const Navbar = ({ onCartClick }) => {
       <nav className="navbar is-exito" role="navigation" aria-label="main navigation">
         <div className="navbar-brand ">
         
-          <a className="navbar-item" href="#">
-            <img src={logoMarquetazo} alt="Logo Marquetazo" />
-          </a>
+        <Link className="navbar-item" to="/">
+          <img src={logoMarquetazo} alt="Logo Supermercado Marquetazo" />
+        </Link>
 
           <div className="navbar-item is-clickable" onClick={() => setIsSidebarOpen(true)}>
             <span className="icon-text has-text-weight-bold">
