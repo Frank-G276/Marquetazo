@@ -5,10 +5,11 @@ import Navbar from "./features/navbar/Navbar";
 import ShoppingCart from "./features/ShoppingCart/ShoppingCart";
 import { useProducts } from "./hooks/useProducts";
 import { useCart } from "./features/ShoppingCart/CartContext";
-import { Routes, Route } from "react-router-dom"; 
+import { Routes, Route, Navigate } from "react-router-dom"; 
 import Checkout from "./features/ShoppingCart/CheckOut"; 
 import Login from './features/auth/login/Login';
 import Register from './features/auth/register/Register';
+
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <Navbar onCartClick={toggleCart} />
 
       <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
@@ -37,9 +39,6 @@ function App() {
         onClose={toggleCart}
         carrito={carrito}
       />
-      <Home />
-      <ShoppingCart isOpen={isCartOpen} onClose={toggleCart} carrito={carrito} />
-    
     </>
   );
 }

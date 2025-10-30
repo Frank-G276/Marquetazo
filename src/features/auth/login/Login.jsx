@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import './Login.scss'; // Reutilizamos los mismos estilos
+import { Link } from "react-router-dom";
+
 
 const Login = () => {
   // Estados del formulario
@@ -137,10 +139,14 @@ const Login = () => {
                 <div className="login-links has-text-centered">
                   <p className="is-size-7">
                     ¿No tienes cuenta?{' '}
-                    <a href="/register" className="is-link">Regístrate aquí</a>
+                    <Link to ="/register">
+                      <a className="is-link">Regístrate aquí</a>
+                    </Link>
                   </p>
                   <p className="is-size-7 mt-2">
-                    <a href="/forgot-password" className="is-link">¿Olvidaste tu contraseña?</a>
+                    <Link to = "/forgot-password">
+                      <a className="is-link">¿Olvidaste tu contraseña?</a>
+                    </Link>
                   </p>
                 </div>
 

@@ -5,6 +5,8 @@ import logoMarquetazo from '../../assets/images/Marquetazo.png';
 import { categoryStructure } from '../../data/categoryStructure';
 import './Sidebar.scss';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const SubcategoryPanel = ({ category }) => {
   return (
@@ -38,10 +40,12 @@ const Navbar = ({ onCartClick }) => {
       <nav className="navbar is-exito" role="navigation" aria-label="main navigation">
         <div className="navbar-brand ">
         
-          <a className="navbar-item" onClick={() => navigate("/home")}>
+        <Link to="/home">
+            <a className="navbar-item">
             <img src={logoMarquetazo} alt="Logo Marquetazo" />
           </a>
-
+        </Link>
+          
           <div className="navbar-item is-clickable" onClick={() => setIsSidebarOpen(true)}>
             <span className="icon-text has-text-weight-bold">
               <span className="icon"><i className="fas fa-bars"></i></span>
@@ -101,10 +105,10 @@ const Navbar = ({ onCartClick }) => {
               <span className="icon"><i className="fas fa-bell"></i></span>
               <span className="is-size-7">Notificaciones</span>
             </a>
-            <a className="navbar-item is-icon-text">
-              <span className="icon"><i className="fas fa-user" onClick={() => navigate("/login")}></i></span>
+            <Link to="/login" className="navbar-item is-icon-text">
+              <span className="icon"><i className="fas fa-user"></i></span>
               <span className="is-size-7">Mi cuenta</span>
-            </a>
+            </Link>
             <a className="navbar-item is-icon-text" onClick={onCartClick}>
               <span className="icon"><i className="fas fa-shopping-cart"></i></span>
               <span className="is-size-7">Carrito</span>
