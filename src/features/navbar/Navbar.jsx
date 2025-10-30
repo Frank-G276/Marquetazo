@@ -4,6 +4,7 @@ import '../../../my-bulma-project.scss';
 import logoMarquetazo from '../../assets/images/Marquetazo.png';
 import { categoryStructure } from '../../data/categoryStructure';
 import './Sidebar.scss';
+import { useNavigate } from "react-router-dom";
 
 const SubcategoryPanel = ({ category }) => {
   return (
@@ -20,12 +21,15 @@ const SubcategoryPanel = ({ category }) => {
   );
 };
 
+
+
 const Navbar = ({ onCartClick }) => {
   // Estado para controlar el menú móvil y el sidebar
   const [isActive, setIsActive] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
 
+  const navigate = useNavigate();
   const toggleMenu = () => setIsActive(!isActive);
   const handleMouseLeave = () => setActiveCategory(null);
 
@@ -34,7 +38,7 @@ const Navbar = ({ onCartClick }) => {
       <nav className="navbar is-exito" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
         
-          <a className="navbar-item" href="#">
+          <a className="navbar-item" onClick={() => navigate("/home")}>
             <img src={logoMarquetazo} alt="Logo Marquetazo" />
           </a>
 

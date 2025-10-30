@@ -1,7 +1,14 @@
 import React from 'react';
 import './ShoppingCart.scss';
+import { useCart } from "../../features/ShoppingCart/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = ({ isOpen, onClose, carrito }) => {
+  const { reduceToCart } = useCart();
+  const { addProduct } = useCart();
+  const { deleteFromCart } = useCart();
+  const navigate = useNavigate();
+  
   return (
     <>
       {isOpen && <div className="cart-overlay" onClick={onClose}></div>}
@@ -16,15 +23,39 @@ const ShoppingCart = ({ isOpen, onClose, carrito }) => {
           {carrito.length > 0 ? (
             <>
               <div className="cart-items">
-                {carrito.map((item) => (
-                  <div key={item.id} className="cart-item">
-                    <p>{item.nombre}</p> <p>{item.unidades} x ${item.precio} </p>
-                  </div>
-                ))}
-              </div>
-              <button className="button is-exito is-fullwidth">
-                Proceder al pago
-              </button>
+                  {carrito.map((item) => (
+                    <div key={item.id} className="cart-item">
+                        
+                      <img className='img-cart' src={item.thumbnail} alt={item.title}/>
+
+                      <div className="cart-info">
+                        <p className="cart-title">{item.title}</p>
+
+                        <div className="cart-quantity">
+                          <button className="qty-btn" onClick={() => reduceToCart(item)}>-</button>
+                          <span className="qty">{item.unidades}</span>
+                          <button className="qty-btn" onClick={() => addProduct(item)}>+</button>
+                        </div>
+                      </div>
+
+                      <div className="cart-price">
+                        <strong>${(item.price * item.unidades).toFixed(2)}</strong>
+                        <button className="remove-btn" onClick={() => deleteFromCart(item)}>
+                          🗑
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+               <div className="cart-footer">
+                  <p className="total">
+                    Total: <strong>${carrito.reduce((t, i) => t + i.price * i.unidades, 0).toFixed(2)}</strong>
+                  </p>
+
+                  <button className="button checkout-btn" onClick={() => navigate("/checkout")}>
+                    Proceder al pago
+                  </button>
+                </div>
             </>
           ) : (
             <p>Tu carrito está vacío</p>
