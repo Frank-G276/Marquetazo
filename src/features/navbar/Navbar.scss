@@ -1,5 +1,12 @@
 $exito-yellow: #2E7D32;
+.navbar-brand {
+  margin-left: 7rem;
+}
 
+.input-navbar {
+  width: 400px;
+  max-width: 500px;
+}
 .navbar.is-exito {
   background-color: $exito-yellow;
 

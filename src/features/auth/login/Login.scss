@@ -1,0 +1,23 @@
+
+@use '../../../../my-bulma-project.scss' as vars;
+
+// Fondo de la página de login (tu color $light-bg)
+.login-page.hero {
+  background-color: vars.$light-bg;
+}
+
+// La caja de login
+.login-box {
+  // Le ponemos un borde superior con tu color primario para darle identidad
+  border-top: 4px solid vars.$organic-green; 
+  
+  box-shadow: 0 1em 3em -0.5em rgba(10, 10, 10, 0.1);
+
+  .title {
+    color: vars.$dark-text; // Tu color de texto oscuro
+  }
+}
+
+.login-links {
+  margin-top: 1.5rem;
+}

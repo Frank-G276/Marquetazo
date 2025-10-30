@@ -5,6 +5,8 @@ import Home from './features/home/Home';
 import Navbar from './features/navbar/Navbar';
 import ShoppingCart from './features/ShoppingCart/ShoppingCart';
 import { useProducts } from './hooks/useProducts'
+import Login from './features/auth/login/Login';
+import Register from './features/auth/register/Register';
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -18,9 +20,13 @@ function App() {
 
   return (
     <>
+    {/*
       <Navbar onCartClick={toggleCart} />
       <Home />
       <ShoppingCart isOpen={isCartOpen} onClose={toggleCart} carrito={carrito} />
+    */}
+      <Login />
+      <Register />
     </>
   );
 }

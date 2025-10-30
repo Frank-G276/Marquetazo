@@ -1,0 +1,26 @@
+// src/features/auth/Register.scss
+
+// Importamos las variables de color (Ajusta la ruta si es necesario)
+@use '../../../../my-bulma-project.scss' as vars;
+
+// Fondo de la página de registro (tu color $light-bg)
+.register-page.hero {
+  background-color: vars.$light-bg;
+}
+
+// La caja de registro
+.register-box {
+  // Borde superior con tu color primario
+  border-top: 4px solid vars.$organic-green; 
+  
+  box-shadow: 0 1em 3em -0.5em rgba(10, 10, 10, 0.1);
+
+  .title {
+    color: vars.$dark-text; // Tu color de texto oscuro
+  }
+
+  // Hacemos los mensajes de error un poco más pequeños
+  .notification {
+    padding: 0.75rem 1rem;
+  }
+}
