@@ -102,7 +102,7 @@ const Navbar = ({ onCartClick }) => {
               <span className="is-size-7">Notificaciones</span>
             </a>
             <a className="navbar-item is-icon-text">
-              <span className="icon"><i className="fas fa-user"></i></span>
+              <span className="icon"><i className="fas fa-user" onClick={() => navigate("/login")}></i></span>
               <span className="is-size-7">Mi cuenta</span>
             </a>
             <a className="navbar-item is-icon-text" onClick={onCartClick}>
