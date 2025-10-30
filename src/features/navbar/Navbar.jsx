@@ -36,7 +36,7 @@ const Navbar = ({ onCartClick }) => {
   return (
     <>
       <nav className="navbar is-exito" role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
+        <div className="navbar-brand ">
         
           <a className="navbar-item" onClick={() => navigate("/home")}>
             <img src={logoMarquetazo} alt="Logo Marquetazo" />
@@ -49,7 +49,7 @@ const Navbar = ({ onCartClick }) => {
             </span>
           </div>
 
-          {/* Botón de hamburguesa para móviles */}
+          
           <a
             role="button"
             className={`navbar-burger ${isActive ? 'is-active' : ''}`}
@@ -71,9 +71,9 @@ const Navbar = ({ onCartClick }) => {
               <div className="field has-addons">
                 <div className="control is-expanded">
                   <input
-                    className="input is-rounded"
+                    className="input-navbar input is-rounded"
                     type="text"
-                    placeholder="Buscar en exito.com"
+                    placeholder="Buscar en Marquetazo..."
                   />
                 </div>
                 <div className="control">

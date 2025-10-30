@@ -7,6 +7,9 @@ import { useProducts } from "./hooks/useProducts";
 import { useCart } from "./features/ShoppingCart/CartContext";
 import { Routes, Route } from "react-router-dom"; 
 import Checkout from "./features/ShoppingCart/CheckOut"; 
+import Login from './features/auth/login/Login';
+import Register from './features/auth/register/Register';
+
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -25,6 +28,8 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
 
       <ShoppingCart
@@ -32,6 +37,9 @@ function App() {
         onClose={toggleCart}
         carrito={carrito}
       />
+      <Home />
+      <ShoppingCart isOpen={isCartOpen} onClose={toggleCart} carrito={carrito} />
+    
     </>
   );
 }
