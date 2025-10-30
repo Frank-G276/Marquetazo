@@ -94,10 +94,10 @@ const Navbar = ({ onCartClick }) => {
           </div>
 
           <div className="navbar-end">
-            <a className="navbar-item is-icon-text">
+            <Link className="navbar-item is-icon-text" to={"/login"}>
               <span className="icon"><i className="fas fa-bell"></i></span>
-              <span className="is-size-7">Notificaciones</span>
-            </a>
+              <span className="is-size-7"> Login </span>
+            </Link>
             <a className="navbar-item is-icon-text">
               <span className="icon"><i className="fas fa-user"></i></span>
               <span className="is-size-7">Mi cuenta</span>

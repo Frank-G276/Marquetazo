@@ -1,23 +1,14 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import '../my-bulma-project.scss'
 import Home from './features/home/Home';
-import Navbar from './features/navbar/Navbar';
-import ShoppingCart from './features/ShoppingCart/ShoppingCart';
-import { useProducts } from './hooks/useProducts'
 import Login from './features/auth/login/Login';
 import { Routes, Route } from 'react-router-dom';
 import Register from './features/auth/register/Register';
+import Layout from './components/Layout';
 
 function App() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const { products, loading, error } = useProducts();
-  const [carrito, setCarrito] = useState([{ id: 1, nombre: 'Jabon', precio: "3.500", unidades : "1" }]); // Ejemplo de carrito con un producto
-
-  if (loading) return <div>Cargando productos...</div>;
-  if (error) return <div>Error al cargar los productos: {error.message}</div>;
-
-  const toggleCart = () => setIsCartOpen(!isCartOpen);
+  
 
   return (
     <Routes>
@@ -25,7 +16,7 @@ function App() {
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
     </Route>
-
+    
     <Route path="/login" element={<Login />} />
 
     <Route path="/register" element={<Register />} />
@@ -41,6 +32,8 @@ function App() {
         </div>
       </section>
     } />
+
+    
   </Routes>
   );
 }
