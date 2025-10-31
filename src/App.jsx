@@ -6,6 +6,7 @@ import Login from './features/auth/login/Login';
 import { Routes, Route } from 'react-router-dom';
 import Register from './features/auth/register/Register';
 import Layout from './components/Layout';
+import Checkout from "./features/ShoppingCart/CheckOut"; 
 
 
 
@@ -17,6 +18,10 @@ function App() {
     
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
+      <Route index element={<Checkout/>}/>
+    </Route>
+    <Route path="/checkout" element={<Layout />}>
+      <Route index element={<Checkout/>}/>
     </Route>
     
     <Route path="/login" element={<Login />} />

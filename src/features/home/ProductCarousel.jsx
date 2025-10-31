@@ -15,9 +15,6 @@ const ProductCarousel = ({ products }) => {
       {/* El 'track' es el que tiene el scroll y el snap */}
       <div className="carousel-track">
         {products.map(product => (
-          // Usamos tu ProductCard existente. 
-          // ¡Sus clases de 'column' (is-one-quarter, etc.) 
-          // funcionarán perfecto aquí!
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

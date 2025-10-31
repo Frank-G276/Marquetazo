@@ -52,7 +52,10 @@ const ShoppingCart = ({ isOpen, onClose, carrito }) => {
                     Total: <strong>${carrito.reduce((t, i) => t + i.price * i.unidades, 0).toFixed(2)}</strong>
                   </p>
 
-                  <button className="button checkout-btn" onClick={() => navigate("/checkout")}>
+                  <button className="button checkout-btn" onClick={() => {
+                    onClose();
+                    navigate("/checkout");
+                    }}>
                     Proceder al pago
                   </button>
                 </div>

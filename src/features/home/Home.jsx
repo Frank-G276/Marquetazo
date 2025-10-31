@@ -1,18 +1,13 @@
 import React from 'react';
-
-// --- Importaciones de Componentes ---
-import HeroCarousel from './HeroCarousel'; // El carrusel principal de promociones
-import ProductCarousel from './ProductCarousel'; // El carrusel de productos por categoría
-
-// --- Importaciones de Lógica y Datos ---
+import HeroCarousel from './HeroCarousel'; 
+import ProductCarousel from './ProductCarousel'; 
 import { useProducts } from '../../hooks/useProducts';
 import { categoryStructure } from '../../data/categoryStructure';
 
-// --- Importación de Estilos ---
+
 import './Home.scss'; 
 
 const Home = () => {
-  // 1. Llamamos al hook para obtener los datos
   const { products, loading, error } = useProducts();
 
   // 2. Función para filtrar productos según nuestra estructura de categorías
@@ -55,13 +50,10 @@ const Home = () => {
   return (
     <div className="home-page">
       
-      {/* --- CARRUSEL PRINCIPAL DE PROMOCIONES --- */}
       <HeroCarousel />
-
-      {/* --- SECCIONES DE PRODUCTOS POR CATEGORÍA --- */}
       <div className="container">
         
-        {/* Mapeamos NUESTRA estructura de categorías */}
+        
         {categoryStructure.map((category) => {
           
           // Obtenemos los productos filtrados para esta sección específica
