@@ -37,7 +37,7 @@ const Navbar = ({ onCartClick }) => {
 
   return (
     <>
-      <nav className="navbar is-exito" role="navigation" aria-label="main navigation">
+      <nav className="navbar is-exito is-fixed-top" role="navigation" aria-label="main navigation">
         <div className="navbar-brand ">
         
         <Link className="navbar-item" to="/">

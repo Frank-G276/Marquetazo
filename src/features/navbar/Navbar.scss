@@ -9,6 +9,13 @@ $exito-yellow: #2E7D32;
 }
 .navbar.is-exito {
   background-color: $exito-yellow;
+  box-shadow: none;
+  transition: opacity 0.5s ease, box-shadow 0.3s ease;
+
+  &.is-scrolled {
+    opacity: 0.7; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  }
 
   .navbar-start {
     flex-grow: 1;
@@ -54,3 +61,4 @@ $exito-yellow: #2E7D32;
   height: 100px;
   object-fit: contain;
 }
+

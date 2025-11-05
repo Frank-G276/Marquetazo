@@ -8,7 +8,7 @@ export function useProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://dummyjson.com/products');
+        const response = await fetch('https://dummyjson.com/products?limit=0');
         if (!response.ok) {
           throw new Error('La respuesta de la red no fue exitosa');
         }

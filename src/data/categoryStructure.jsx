@@ -5,7 +5,12 @@ export const categoryStructure = [
       'laptops',
       'smartphones',
       'tablets',
-      'mobile-accessories',
+      'mobile-accessories'
+    ]
+  },
+  {
+    name: 'Vehículos y Motos',
+    subcategories: [
       'vehicle',
       'motorcycle'
     ]
