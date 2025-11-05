@@ -8,14 +8,19 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
-const SubcategoryPanel = ({ category }) => {
+const SubcategoryPanel = ({ category, onClose }) => {
   return (
     <div className="subcategory-panel menu">
       <p className="menu-label">{category.name}</p>
       <ul className="menu-list">
         {category.subcategories.map(subcat => (
           <li key={subcat}>
-            <a>{subcat.replace(/-/g, ' ')}</a>
+           <Link
+            to={`/category/${encodeURIComponent(category.name)}`}
+            onClick={onClose}
+            >
+              {subcat.replace(/-/g, ' ')}
+            </Link>
           </li>
         ))}
       </ul>
@@ -26,7 +31,6 @@ const SubcategoryPanel = ({ category }) => {
 
 
 const Navbar = ({ onCartClick }) => {
-  // Estado para controlar el menú móvil y el sidebar
   const [isActive, setIsActive] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
@@ -128,18 +132,21 @@ const Navbar = ({ onCartClick }) => {
               <ul className="menu-list">
                 {categoryStructure.map(cat => (
                   <li key={cat.name} onMouseEnter={() => setActiveCategory(cat)}>
-                    <a className={activeCategory?.name === cat.name ? 'is-active' : ''}>
+                    <Link className={activeCategory?.name === cat.name ? 'is-active' : ''}
+                    onClick={() => (setIsSidebarOpen(false))}
+                    to={`/category/${encodeURIComponent(cat.name)}`}>
+                      
                       <span>{cat.name}</span>
                       <span className="icon is-small is-right">
                         <i className="fas fa-chevron-right"></i>
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
             {activeCategory && activeCategory.subcategories.length > 0 && (
-              <SubcategoryPanel category={activeCategory} />
+              <SubcategoryPanel category={activeCategory} onClose={() => setIsSidebarOpen(false)} />
             )}
           </div>
         </>

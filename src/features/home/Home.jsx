@@ -6,24 +6,20 @@ import { categoryStructure } from '../../data/categoryStructure';
 
 
 import './Home.scss'; 
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const { products, loading, error } = useProducts();
 
-  // 2. Función para filtrar productos según nuestra estructura de categorías
   const getProductsForCategory = (mainCategoryName) => {
-    // Encuentra la categoría en nuestra estructura local
     const category = categoryStructure.find(c => c.name === mainCategoryName);
-    if (!category) return []; // Si no la encuentra, devuelve array vacío
-    
-    // Obtiene la lista de subcategorías (ej: ['laptops', 'smartphones'])
+    if (!category) return [];
+
     const subcategories = category.subcategories;
     
-    // Filtra la lista total de productos de la API
     return products.filter(product => subcategories.includes(product.category));
   };
 
-  // 3. Manejo de estado: Cargando (Loading)
   if (loading) {
     return (
       <section className="section is-large">
@@ -32,7 +28,6 @@ const Home = () => {
     );
   }
 
-  // 4. Manejo de estado: Error
   if (error) {
     return (
       <section className="section">
@@ -46,7 +41,6 @@ const Home = () => {
     );
   }
 
-  // 5. Estado exitoso: Mostrar la página completa
   return (
     <div className="home-page">
       
@@ -56,27 +50,24 @@ const Home = () => {
         
         {categoryStructure.map((category) => {
           
-          // Obtenemos los productos filtrados para esta sección específica
           const categoryProducts = getProductsForCategory(category.name);
           
-          // Si no hay productos de esa categoría en la API, no mostramos la sección
           if (categoryProducts.length === 0) return null;
 
-          // Renderizamos la sección
           return (
             <section key={category.name} className="section category-section" id={category.name.toLowerCase()}>
               
-              {/* Título de la sección */}
               <h2 className="title is-3">{category.name}</h2>
               
-              {/* Carrusel de productos para esta categoría */}
               <ProductCarousel products={categoryProducts} />
 
-              {/* Botón para "Ver todo" */}
               <div className="has-text-right">
-                <a href={`/category/${category.name}`} className="button is-primary is-outlined">
+                <Link 
+                  to={`/category/${encodeURIComponent(category.name)}`} 
+                  className="button is-primary is-outlined"
+                >
                   Ver todo en {category.name}
-                </a>
+                </Link>
               </div>
             </section>
           );

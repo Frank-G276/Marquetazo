@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import Register from './features/auth/register/Register';
 import Layout from './components/Layout';
 import Checkout from "./features/ShoppingCart/CheckOut"; 
+import CategoryPage from './features/category/CategoryPage';
 
 
 
@@ -18,10 +19,10 @@ function App() {
     
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/category/:categoryName" element={<CategoryPage />} />
     </Route>
-    <Route path="/checkout" element={<Layout />}>
-      <Route index element={<Checkout/>}/>
-    </Route>
+    
     
     <Route path="/login" element={<Login />} />
 
