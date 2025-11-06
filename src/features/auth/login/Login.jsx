@@ -52,7 +52,8 @@ const Login = () => {
         firstName: foundUser.firstName,
         lastName: foundUser.lastName
       };
-      sessionStorage.setItem('currentUser', JSON.stringify(userSession));
+      localStorage.setItem('currentUser', JSON.stringify(userSession));
+      window.dispatchEvent(new Event('userChanged'));
       
       // Redirigimos al inicio después de 1.5 segundos
       setTimeout(() => {

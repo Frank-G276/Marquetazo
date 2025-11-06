@@ -32,8 +32,17 @@ const Navbar = ({ onCartClick }) => {
   const [hoveredCategory, setHoveredCategory] = useState(null); 
   
   const navigate = useNavigate();
-  const toggleMenu = () => setIsActive(!isActive); 
-  
+  const toggleMenu = () => setIsActive(!isActive);
+  const handleMouseLeave = () => setActiveCategory(null);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    window.dispatchEvent(new Event("userChanged"));
+    navigate("/login", { replace: true });  
+  };
+
   const closeDropdown = () => {
     setHoveredCategory(null); 
     setIsActive(false); 
@@ -131,18 +140,47 @@ const Navbar = ({ onCartClick }) => {
           </div>
 
           <div className="navbar-end">
-            <Link className="navbar-item is-icon-text" to={"/login"} onClick={closeDropdown}>
-              <span className="icon"><i className="fas fa-bell"></i></span>
-              <span className="is-size-7"> Login </span>
-            </Link>
-            <Link className="navbar-item is-icon-text" onClick={closeDropdown}>
+            {!currentUser && (
+              <Link
+                className="navbar-item is-icon-text"
+                to="/login"
+                onClick={closeDropdown}
+              >
+                <span className="icon"><i className="fas fa-bell"></i></span>
+                <span className="is-size-7">Login</span>
+              </Link>
+            )}
+
+            <Link
+              className="navbar-item is-icon-text"
+              onClick={closeDropdown}
+            >
               <span className="icon"><i className="fas fa-user"></i></span>
               <span className="is-size-7">Mi cuenta</span>
             </Link>
-            <Link className="navbar-item is-icon-text" onClick={() => { onCartClick(); closeDropdown(); }}>
+
+            <Link
+              className="navbar-item is-icon-text"
+              onClick={() => { onCartClick(); closeDropdown(); }}
+            >
               <span className="icon"><i className="fas fa-shopping-cart"></i></span>
               <span className="is-size-7">Carrito</span>
             </Link>
+            
+            {currentUser && (
+              <>
+                <Link className="navbar-item is-icon-text" onClick={handleLogout}>
+                <span className="icon"><i className="fas fa-sign-out-alt"></i></span>
+                <span className="is-size-7">Cerrar sesión</span>
+                </Link>
+
+                <span className="navbar-item is-size-7">
+                  Hola, {currentUser.firstName}
+                </span>
+
+              </>
+            )}
+            
           </div>
         </div>
       </nav>
