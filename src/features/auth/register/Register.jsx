@@ -46,21 +46,29 @@ const Register = () => {
         return;
       }
 
-      // Creamos el nuevo usuario (¡Nunca guardes 'confirmPassword'!)
+      // Creamos el nuevo usuario 
       const newUser = {
         firstName,
         lastName,
         email,
-        password // En una app real, aquí deberías hashear la contraseña
+        password 
       };
 
       // Agregamos el nuevo usuario a la lista
       users.push(newUser);
-
-      // Guardamos la lista actualizada en Local Storage
       localStorage.setItem('users', JSON.stringify(users));
 
-      // ¡Éxito!
+      // Guardar usuario logueado
+      localStorage.setItem('currentUser', JSON.stringify(newUser));
+
+      // Crear carrito asociado al usuario
+      const userCart = {
+        email: newUser.email,
+        items: []
+      };
+      localStorage.setItem(`cart_${newUser.email}`, JSON.stringify(userCart));
+
+      // Éxito!
       setSuccess('¡Registro exitoso! Ya puedes iniciar sesión.');
       
       // Limpiamos el formulario

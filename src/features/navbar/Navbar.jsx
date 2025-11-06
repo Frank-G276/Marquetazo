@@ -29,7 +29,6 @@ const SubcategoryPanel = ({ category, onClose }) => {
 };
 
 
-
 const Navbar = ({ onCartClick }) => {
   const [isActive, setIsActive] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -38,6 +37,14 @@ const Navbar = ({ onCartClick }) => {
   const navigate = useNavigate();
   const toggleMenu = () => setIsActive(!isActive);
   const handleMouseLeave = () => setActiveCategory(null);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    window.dispatchEvent(new Event("userChanged"));
+    navigate("/login", { replace: true });
+  };
 
   return (
     <>
@@ -115,6 +122,11 @@ const Navbar = ({ onCartClick }) => {
               <span className="icon"><i className="fas fa-shopping-cart"></i></span>
               <span className="is-size-7">Carrito</span>
             </Link>
+            {currentUser && (
+              <span onClick={handleLogout} className="button is-danger is-small">
+                Cerrar sesión
+              </span>
+            )}
           </div>
         </div>
       </nav>
