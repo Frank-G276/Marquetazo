@@ -1,4 +1,3 @@
-// src/components/Layout.jsx
 
 import React, { useState, useEffect } from 'react';
 
@@ -7,6 +6,7 @@ import Navbar from '../features/navbar/Navbar';
 import ShoppingCart from '../features/ShoppingCart/ShoppingCart';
 import { useProducts } from '../hooks/useProducts'
 import { useCart } from '../features/ShoppingCart/CartContext'
+import Footer from '../features/footer/Footer';
 
 
 
@@ -45,6 +45,7 @@ const Layout = () => {
       <main >
         <Outlet />
       </main>
+      <Footer />
       <ShoppingCart
         isOpen={isCartOpen}
         onClose={toggleCart}

@@ -1,0 +1,57 @@
+
+@use 'sass:color';
+@use '../../../my-bulma-project.scss' as vars;
+
+.footer.custom-footer {
+  
+  background-color: vars.$dark-text; 
+  color: vars.$light-bg; 
+
+  .footer-logo {
+    max-height: 40px; 
+  }
+
+  .footer-title {
+    color: vars.$light-bg; 
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+  }
+
+
+  ul {
+    list-style: none;
+    margin: 0;
+    
+    li {
+      margin-bottom: 0.75rem;
+    }
+
+    a {
+      color: vars.$light-grey; 
+      transition: color 0.2s ease-in-out;
+      &:hover {
+        color: vars.$citrus-orange;
+      }
+    }
+  }
+
+  .social-icons .icon {
+    color: vars.$light-grey;
+    border: 1px solid vars.$light-grey;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: vars.$citrus-orange;
+      border-color: vars.$citrus-orange;
+      transform: scale(1.1);
+    }
+  }
+
+  .content p {
+    color: vars.$light-grey;
+    border-top: 1px solid color.adjust(vars.$dark-text, $lightness: 10%);padding-top: 2rem;
+    margin-top: 2rem;
+  }
+}

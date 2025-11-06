@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
 import './Navbar.scss';
-import '../../../my-bulma-project.scss';
+import '../../../my-bulma-project.scss'; 
 import logoMarquetazo from '../../assets/images/Marquetazo.png';
 import { categoryStructure } from '../../data/categoryStructure';
-import './Sidebar.scss';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
-const SubcategoryPanel = ({ category, onClose }) => {
+const SubcategoryPanel = ({ category }) => { 
   return (
-    <div className="subcategory-panel menu">
+    <div className="subcategory-panel menu"> 
       <p className="menu-label">{category.name}</p>
       <ul className="menu-list">
         {category.subcategories.map(subcat => (
           <li key={subcat}>
            <Link
-            to={`/category/${encodeURIComponent(category.name)}`}
-            onClick={onClose}
-            >
+             to={`/category/${encodeURIComponent(category.name)}`}
+             >
               {subcat.replace(/-/g, ' ')}
             </Link>
           </li>
@@ -29,33 +27,65 @@ const SubcategoryPanel = ({ category, onClose }) => {
 };
 
 
-
 const Navbar = ({ onCartClick }) => {
-  const [isActive, setIsActive] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(null);
-
+  const [isActive, setIsActive] = useState(false); 
+  const [hoveredCategory, setHoveredCategory] = useState(null); 
+  
   const navigate = useNavigate();
-  const toggleMenu = () => setIsActive(!isActive);
-  const handleMouseLeave = () => setActiveCategory(null);
+  const toggleMenu = () => setIsActive(!isActive); 
+  
+  const closeDropdown = () => {
+    setHoveredCategory(null); 
+    setIsActive(false); 
+  };
 
   return (
     <>
       <nav className="navbar is-exito is-fixed-top" role="navigation" aria-label="main navigation">
-        <div className="navbar-brand ">
-        
-        <Link className="navbar-item" to="/">
-          <img src={logoMarquetazo} alt="Logo Supermercado Marquetazo" />
-        </Link>
+        <div className="navbar-brand">
+          <Link className="navbar-item" to="/" onClick={closeDropdown}>
+            <img src={logoMarquetazo} alt="Logo Supermercado Marquetazo" />
+          </Link>
 
-          <div className="navbar-item is-clickable" onClick={() => setIsSidebarOpen(true)}>
-            <span className="icon-text has-text-weight-bold">
-              <span className="icon"><i className="fas fa-bars"></i></span>
-              <span>Menú</span>
-            </span>
+          <div className="navbar-item has-dropdown is-hoverable is-categories-dropdown"> 
+            <a className="navbar-link" > 
+              <span className="icon-text has-text-weight-bold">
+                <span className="icon"><i className="fas fa-bars"></i></span>
+                <span>Menú</span>
+              </span>
+            </a>
+
+            <div className="navbar-dropdown is-boxed is-categories-menu"> 
+              {categoryStructure.map(cat => (
+                
+                <div 
+                  key={cat.name} 
+                  className={`navbar-item has-dropdown is-hoverable category-item ${hoveredCategory?.name === cat.name ? 'is-active' : ''}`}
+                  onMouseEnter={() => setHoveredCategory(cat)}
+                  onMouseLeave={() => setHoveredCategory(null)} 
+                >
+                  <Link 
+                    to={`/category/${encodeURIComponent(cat.name)}`} 
+                    className="navbar-link" 
+                    onClick={closeDropdown} 
+                  >
+                    <span>{cat.name}</span>
+                    <span className="icon is-small is-right is-pulled-right">
+                      <i className="fas fa-chevron-right"></i>
+                    </span>
+                  </Link>
+
+                  
+                  {cat.subcategories.length > 0 && hoveredCategory?.name === cat.name && (
+                    <div className="navbar-dropdown is-subcategory-dropdown"> 
+                      <SubcategoryPanel category={cat} onClose={closeDropdown} /> 
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-
-        
+          
           <a
             role="button"
             className={`navbar-burger ${isActive ? 'is-active' : ''}`}
@@ -69,10 +99,9 @@ const Navbar = ({ onCartClick }) => {
           </a>
         </div>
 
-        {/* Menú principal */}
+        
         <div className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
           <div className="navbar-start">
-            {/* Buscador */}
             <div className="navbar-item">
               <div className="field has-addons">
                 <div className="control is-expanded">
@@ -92,7 +121,6 @@ const Navbar = ({ onCartClick }) => {
               </div>
             </div>
 
-            {/* Ubicación */}
             <a className="navbar-item has-text-weight-bold is-hidden-touch">
               <span className="icon"><i className="fas fa-map-marker-alt"></i></span>
               <span>¿Cómo quieres recibir tu pedido?</span>
@@ -103,54 +131,21 @@ const Navbar = ({ onCartClick }) => {
           </div>
 
           <div className="navbar-end">
-            <Link className="navbar-item is-icon-text" to={"/login"}>
+            <Link className="navbar-item is-icon-text" to={"/login"} onClick={closeDropdown}>
               <span className="icon"><i className="fas fa-bell"></i></span>
               <span className="is-size-7"> Login </span>
             </Link>
-            <Link className="navbar-item is-icon-text">
+            <Link className="navbar-item is-icon-text" onClick={closeDropdown}>
               <span className="icon"><i className="fas fa-user"></i></span>
               <span className="is-size-7">Mi cuenta</span>
             </Link>
-            <Link className="navbar-item is-icon-text" onClick={onCartClick}>
+            <Link className="navbar-item is-icon-text" onClick={() => { onCartClick(); closeDropdown(); }}>
               <span className="icon"><i className="fas fa-shopping-cart"></i></span>
               <span className="is-size-7">Carrito</span>
             </Link>
           </div>
         </div>
       </nav>
-
-      {/* Sidebar de categorías */}
-      {isSidebarOpen && (
-        <>
-          <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>
-          <div className="sidebar-container" onMouseLeave={handleMouseLeave}>
-            <div className="sidebar-menu menu">
-              <div className="sidebar-header">
-                <p className="menu-label">Categorías</p>
-                <button className="delete" onClick={() => setIsSidebarOpen(false)}></button>
-              </div>
-              <ul className="menu-list">
-                {categoryStructure.map(cat => (
-                  <li key={cat.name} onMouseEnter={() => setActiveCategory(cat)}>
-                    <Link className={activeCategory?.name === cat.name ? 'is-active' : ''}
-                    onClick={() => (setIsSidebarOpen(false))}
-                    to={`/category/${encodeURIComponent(cat.name)}`}>
-                      
-                      <span>{cat.name}</span>
-                      <span className="icon is-small is-right">
-                        <i className="fas fa-chevron-right"></i>
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {activeCategory && activeCategory.subcategories.length > 0 && (
-              <SubcategoryPanel category={activeCategory} onClose={() => setIsSidebarOpen(false)} />
-            )}
-          </div>
-        </>
-      )}
     </>
   );
 };

@@ -1,4 +1,8 @@
-$exito-yellow: #2E7D32;
+// src/features/navbar/Navbar.scss
+
+// --- Estilos del Navbar ---
+$exito-yellow: #2E7D32; 
+
 .navbar-brand {
   margin-left: 7rem;
 }
@@ -7,15 +11,13 @@ $exito-yellow: #2E7D32;
   width: 400px;
   max-width: 500px;
 }
-.navbar.is-exito {
-  background-color: $exito-yellow;
-  box-shadow: none;
-  transition: opacity 0.5s ease, box-shadow 0.3s ease;
 
-  &.is-scrolled {
-    opacity: 0.7; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-  }
+.navbar.is-exito {
+  background-color: $exito-yellow; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  
 
   .navbar-start {
     flex-grow: 1;
@@ -62,3 +64,111 @@ $exito-yellow: #2E7D32;
   object-fit: contain;
 }
 
+// --- NUEVOS ESTILOS ESPECÍFICOS PARA EL DROPDOWN DE CATEGORÍAS ---
+
+// Variables de color para los menús
+$menu-bg: #ffffff;
+$menu-text: #363636;
+$menu-hover-bg: #f5f5f5;
+$menu-active-bg: #2E7D32; // Tu verde orgánico
+$menu-active-text: #ffffff;
+$sub-menu-bg: #f7f7f7;
+
+.navbar-item.is-categories-dropdown {
+  // Ajusta el ancho del botón "Menú" si es necesario
+  // width: 150px; 
+  
+  .navbar-link {
+    // Asegura que el texto y el ícono estén bien alineados
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // Opcional: Remueve la flecha por defecto de Bulma para dropdowns si no la quieres
+    &::after {
+      display: none; 
+    }
+  }
+
+  // Estilos del dropdown principal de categorías
+  .navbar-dropdown.is-categories-menu {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: 250px; // Ancho del menú principal de categorías
+    padding: 0; // Quita el padding por defecto para controlar los items
+
+    .navbar-item.category-item {
+      // Un poco de padding para los items de categoría
+      padding: 0; 
+      position: relative; // Necesario para posicionar el sub-dropdown
+      
+      .navbar-link {
+        color: $menu-text;
+        font-weight: bold;
+        padding: 0.75rem 1.25rem;
+        border-radius: 0;
+        
+        &:hover {
+          background-color: $menu-hover-bg;
+          color: $menu-text;
+        }
+
+        // Estilo cuando la categoría está activa (hovered)
+        &.is-active, .is-active & {
+          background-color: $menu-active-bg;
+          color: $menu-active-text;
+        }
+        
+        .icon.is-right {
+          margin-left: auto; // Empuja la flecha a la derecha
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  // Estilos del sub-dropdown (el panel de subcategorías)
+  .navbar-dropdown.is-subcategory-dropdown {
+    position: absolute;
+    left: 100%; // Se posiciona a la derecha del menú principal
+    top: 0; // Alineado con la parte superior del item de categoría
+    // width: 300px; // Ancho del panel de subcategorías
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: $sub-menu-bg;
+    padding: 0; // Quita padding por defecto
+
+    // Reutilizamos los estilos del .subcategory-panel que ya tenías
+    .subcategory-panel {
+      width: 100%; // Ocupa todo el ancho del sub-dropdown
+      height: auto; // Altura dinámica
+      max-height: calc(100vh - 6rem); // Evita que se salga de la pantalla
+      box-shadow: none; // No necesitamos sombra adicional aquí
+      padding: 1rem;
+      background-color: transparent; // El fondo lo da el .is-subcategory-dropdown
+
+      .menu-label {
+        padding-left: 0.75rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #dbdbdb;
+        text-transform: none; 
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: $menu-text;
+      }
+
+      .menu-list {
+        padding-top: 1rem;
+        a {
+          text-transform: capitalize;
+          color: #555;
+          padding: 0.5em 0.75em;
+          background-color: transparent;
+          
+          &:hover {
+            background-color: $menu-active-bg;
+            color: $menu-active-text; 
+          }
+        }
+      }
+    }
+  }
+}
