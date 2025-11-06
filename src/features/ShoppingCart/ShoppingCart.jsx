@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const ShoppingCart = ({ isOpen, onClose }) => {
   const { carrito, addToCart, reduceToCart, deleteFromCart } = useCart();
   const navigate = useNavigate();
+  
 
   return (
     <>
