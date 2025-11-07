@@ -8,6 +8,7 @@ import Register from './features/auth/register/Register';
 import Layout from './components/Layout';
 import Checkout from "./features/ShoppingCart/CheckOut"; 
 import CategoryPage from './features/category/CategoryPage';
+import ProductDetailPage from './features/product/ProductDetailPage';
 
 
 
@@ -21,12 +22,15 @@ function App() {
       <Route index element={<Home />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/category/:categoryName" element={<CategoryPage />} />
+      <Route path="/product/:productId" element={<ProductDetailPage />} />
     </Route>
     
     
     <Route path="/login" element={<Login />} />
 
     <Route path="/register" element={<Register />} />
+
+    
     
     <Route path="*" element={
       <section className="section">
