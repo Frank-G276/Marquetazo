@@ -1,4 +1,3 @@
-// src/context/CartContext.jsx
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 const CartContext = createContext();

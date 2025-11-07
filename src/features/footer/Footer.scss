@@ -4,8 +4,10 @@
 
 .footer.custom-footer {
   
-  background-color: vars.$dark-text; 
-  color: vars.$light-bg; 
+  background-color: vars.$dark-text;
+  color: vars.$light-bg;
+  padding-top: 2rem;
+  padding-bottom: 1rem; 
 
   .footer-logo {
     max-height: 40px; 
@@ -53,5 +55,6 @@
     color: vars.$light-grey;
     border-top: 1px solid color.adjust(vars.$dark-text, $lightness: 10%);padding-top: 2rem;
     margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 }
