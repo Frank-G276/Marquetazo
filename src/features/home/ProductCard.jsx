@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ProductCard.scss'; 
 import { useCart } from "../../features/ShoppingCart/CartContext";
 
@@ -26,6 +27,12 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
         <footer className="card-footer">
+          <Link 
+              to={`/product/${product.id}`} 
+              className="card-footer-item button is-light"
+            >
+              Ver detalle
+          </Link>
           <a className="card-footer-item button is-primary is-fullwidth" onClick={() => addToCart(product)}>
             <span className="icon">
               <i className="fas fa-cart-plus"></i>
