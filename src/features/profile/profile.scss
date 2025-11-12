@@ -1,3 +1,5 @@
+$primary-color: #00b37e;
+
 .profile-page {
   display: flex;
   justify-content: center;
@@ -165,5 +167,71 @@
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #00b37e;
+}
+
+.modal.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-card {
+  max-width: 600px;
+  width: 90%;
+}
+.modal-card-head {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #dbdbdb;
+}
+.modal-card-title {
+  color: #363636;
+  font-weight: 600;
+}
+.modal-card-body {
+  padding: 2rem;
+  background-color: white;
+}
+
+.upload-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .button {
+    width: 100%;
+    justify-content: center;
+    border-width: 2px;
+    
+    &.is-primary {
+       background-color: $primary-color;
+       &:hover {
+         background-color: darken($primary-color, 5%);
+       }
+    }
+    
+    &.is-outlined {
+      background-color: transparent;
+      border-color: $primary-color;
+      color: $primary-color;
+       &:hover {
+         background-color: $primary-color;
+         color: white;
+       }
+    }
+  }
+}
+
+.camera-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.camera-video {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+  background-color: #000;
 }
 

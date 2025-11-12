@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./profile.scss";
+import PhotoUploadModal from "./PhotoUploadModal";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", image: "" });
+  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);  
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const storedUser = localStorage.getItem("currentUser");
@@ -35,15 +38,9 @@ const Profile = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({ ...formData, image: reader.result });
-      };
-      reader.readAsDataURL(file); 
-    }
+  const handleImageSelect = (imageData) => {
+    setFormData({ ...formData, image: imageData });
+    setIsPhotoModalOpen(false); // Cierra el modal
   };
 
   const handleSave = (e) => {
@@ -70,6 +67,7 @@ const Profile = () => {
   }
 
   return (
+    <>
     <section className="section profile-page">
       <div className="profile-card">
         <div className="profile-header">
@@ -83,16 +81,13 @@ const Profile = () => {
               className="avatar"
             />
             {isEditing && (
-              <label htmlFor="upload-photo" className="upload-btn">
-                Cambiar foto
-                <input
-                  type="file"
-                  id="upload-photo"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  hidden
-                />
-              </label>
+              <button 
+              type="button"
+              className="upload-btn"
+              onClick={() => setIsPhotoModalOpen(true)}
+              >
+              Cambiar foto
+              </button>
             )}
           </div>
           <h2>{user.firstName} {user.lastName}</h2>
@@ -170,6 +165,15 @@ const Profile = () => {
         </div>
       </div>
     </section>
+    
+    {isPhotoModalOpen && (
+        <PhotoUploadModal
+          isOpen={isPhotoModalOpen}
+          onClose={() => setIsPhotoModalOpen(false)}
+          onImageSelect={handleImageSelect}
+        />
+      )}
+    </>
   );
 };
 
