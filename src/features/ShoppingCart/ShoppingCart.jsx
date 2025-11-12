@@ -1,6 +1,6 @@
 import React from 'react';
 import './ShoppingCart.scss';
-import { useCart } from "../../features/ShoppingCart/CartContext";
+import { useCart } from "./CartContext";
 import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = ({ isOpen, onClose }) => {

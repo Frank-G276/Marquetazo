@@ -50,7 +50,8 @@ const Login = () => {
       const userSession = {
         email: foundUser.email,
         firstName: foundUser.firstName,
-        lastName: foundUser.lastName
+        lastName: foundUser.lastName,
+        image: foundUser.image || ''
       };
       localStorage.setItem('currentUser', JSON.stringify(userSession));
       window.dispatchEvent(new Event('userChanged'));
