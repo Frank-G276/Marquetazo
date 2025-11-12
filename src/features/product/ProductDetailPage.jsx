@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProductDetailPage.scss';
-import { useCart } from "../../features/ShoppingCart/CartContext";
+import { useCart } from "../shoppingCart/CartContext";
 
 const ProductDetailPage = () => {
     const { addToCart } = useCart();

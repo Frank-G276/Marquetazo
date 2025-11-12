@@ -153,14 +153,6 @@ const Navbar = ({ onCartClick }) => {
 
             <Link
               className="navbar-item is-icon-text"
-              onClick={closeDropdown}
-            >
-              <span className="icon"><i className="fas fa-user"></i></span>
-              <span className="is-size-7">Mi cuenta</span>
-            </Link>
-
-            <Link
-              className="navbar-item is-icon-text"
               onClick={() => { onCartClick(); closeDropdown(); }}
             >
               <span className="icon"><i className="fas fa-shopping-cart"></i></span>
@@ -169,11 +161,22 @@ const Navbar = ({ onCartClick }) => {
             
             {currentUser && (
               <>
-                <Link className="navbar-item is-icon-text" onClick={handleLogout}>
-                <span className="icon"><i className="fas fa-sign-out-alt"></i></span>
-                <span className="is-size-7">Cerrar sesión</span>
+                <Link
+                  className="navbar-item is-icon-text" to="/profile"
+                  onClick={closeDropdown}
+                >
+                  <span className="icon"><i className="fas fa-user"></i></span>
+                  <span className="is-size-7">Mi cuenta</span>
+                </Link>
+                
+                <Link 
+                  className="navbar-item is-icon-text" 
+                  onClick={handleLogout}>
+                  <span className="icon"><i className="fas fa-sign-out-alt"></i></span>
+                  <span className="is-size-7">Cerrar sesión</span>
                 </Link>
 
+        
                 <span className="navbar-item is-size-7">
                   Hola, {currentUser.firstName}
                 </span>
