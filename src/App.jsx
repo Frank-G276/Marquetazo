@@ -10,6 +10,7 @@ import Checkout from "./features/shoppingCart/CheckOut";
 import CategoryPage from './features/category/CategoryPage';
 import ProductDetailPage from './features/product/ProductDetailPage';
 import Profile from './features/profile/Profile';
+import SearchPage from './features/search/SearchPage';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Route path="/category/:categoryName" element={<CategoryPage />} />
       <Route path="/product/:productId" element={<ProductDetailPage />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path='/search' element={<SearchPage/>} />
     </Route>
     
     

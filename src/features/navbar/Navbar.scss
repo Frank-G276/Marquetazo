@@ -1,7 +1,14 @@
-// src/features/navbar/Navbar.scss
-
 // --- Estilos del Navbar ---
 $exito-yellow: #2E7D32; 
+
+// Variables de color para los menús
+$menu-bg: #ffffff;
+$menu-text: #363636;
+$menu-hover-bg: #f5f5f5;
+$menu-active-bg: #2E7D32; 
+$menu-active-text: #ffffff;
+$sub-menu-bg: #f7f7f7;
+
 
 .navbar-brand {
   margin-left: 7rem;
@@ -10,11 +17,13 @@ $exito-yellow: #2E7D32;
 .input-navbar {
   width: 400px;
   max-width: 500px;
+  height: 46px !important;
 }
 
 .navbar.is-exito {
+  // Navbar transparente por defecto
   background-color: $exito-yellow; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
   
@@ -64,42 +73,27 @@ $exito-yellow: #2E7D32;
   object-fit: contain;
 }
 
-// --- NUEVOS ESTILOS ESPECÍFICOS PARA EL DROPDOWN DE CATEGORÍAS ---
-
-// Variables de color para los menús
-$menu-bg: #ffffff;
-$menu-text: #363636;
-$menu-hover-bg: #f5f5f5;
-$menu-active-bg: #2E7D32; // Tu verde orgánico
-$menu-active-text: #ffffff;
-$sub-menu-bg: #f7f7f7;
-
+// --- ESTILOS DEL DROPDOWN DE CATEGORÍAS ---
 .navbar-item.is-categories-dropdown {
-  // Ajusta el ancho del botón "Menú" si es necesario
-  // width: 150px; 
   
   .navbar-link {
-    // Asegura que el texto y el ícono estén bien alineados
     display: flex;
     align-items: center;
     justify-content: center;
-    // Opcional: Remueve la flecha por defecto de Bulma para dropdowns si no la quieres
     &::after {
       display: none; 
     }
   }
 
-  // Estilos del dropdown principal de categorías
   .navbar-dropdown.is-categories-menu {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    width: 250px; // Ancho del menú principal de categorías
-    padding: 0; // Quita el padding por defecto para controlar los items
+    width: 250px;
+    padding: 0; 
 
     .navbar-item.category-item {
-      // Un poco de padding para los items de categoría
       padding: 0; 
-      position: relative; // Necesario para posicionar el sub-dropdown
+      position: relative; 
       
       .navbar-link {
         color: $menu-text;
@@ -112,38 +106,34 @@ $sub-menu-bg: #f7f7f7;
           color: $menu-text;
         }
 
-        // Estilo cuando la categoría está activa (hovered)
         &.is-active, .is-active & {
           background-color: $menu-active-bg;
           color: $menu-active-text;
         }
         
         .icon.is-right {
-          margin-left: auto; // Empuja la flecha a la derecha
+          margin-left: auto;
           margin-right: 0;
         }
       }
     }
   }
 
-  // Estilos del sub-dropdown (el panel de subcategorías)
   .navbar-dropdown.is-subcategory-dropdown {
     position: absolute;
-    left: 100%; // Se posiciona a la derecha del menú principal
-    top: 0; // Alineado con la parte superior del item de categoría
-    // width: 300px; // Ancho del panel de subcategorías
+    left: 100%; 
+    top: 0; 
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     background-color: $sub-menu-bg;
-    padding: 0; // Quita padding por defecto
+    padding: 0; 
 
-    // Reutilizamos los estilos del .subcategory-panel que ya tenías
     .subcategory-panel {
-      width: 100%; // Ocupa todo el ancho del sub-dropdown
-      height: auto; // Altura dinámica
-      max-height: calc(100vh - 6rem); // Evita que se salga de la pantalla
-      box-shadow: none; // No necesitamos sombra adicional aquí
+      width: 100%; 
+      height: auto; 
+      max-height: calc(100vh - 6rem); 
+      box-shadow: none; 
       padding: 1rem;
-      background-color: transparent; // El fondo lo da el .is-subcategory-dropdown
+      background-color: transparent; 
 
       .menu-label {
         padding-left: 0.75rem;
@@ -170,5 +160,86 @@ $sub-menu-bg: #f7f7f7;
         }
       }
     }
+  }
+} 
+
+
+/* --- ESTILOS PARA LA BÚSQUEDA INSTANTÁNEA --- */
+
+.search-form {
+  position: relative;
+  
+  .control.is-expanded {
+    position: relative;
+  }
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  z-index: 5;
+  color: #aaa;
+}
+
+// Estilos VISUALES para el 'box' de sugerencias.
+
+.search-suggestions {
+  padding: 1rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: slideDownFadeIn 0.2s ease-out forwards;
+  
+  // Estilos de 'box' de Bulma
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02);
+}
+
+.suggestion-title {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: #777;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.suggestion-list {
+  list-style: none;
+  margin: 0;
+  
+  .suggestion-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.25rem;
+    border-radius: 4px;
+    color: #363636;
+    font-size: 0.9rem;
+    
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+  
+  .suggestion-image {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+}
+
+/* Animación */
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
