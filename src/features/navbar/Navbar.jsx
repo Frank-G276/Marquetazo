@@ -6,6 +6,7 @@ import logoMarquetazo from '../../assets/images/Marquetazo.png';
 import { categoryStructure } from '../../data/categoryStructure';
 import SearchSuggestions from './SearchSuggestions'; 
 
+// --- Panel de Subcategorías (Nivel 2) ---
 const SubcategoryPanel = ({ category, onNavigate }) => {
   return (
     <div className="subcategory-panel menu">
@@ -29,18 +30,27 @@ const SubcategoryPanel = ({ category, onNavigate }) => {
   );
 };
 
+// --- Componente Principal del Navbar ---
 const Navbar = ({ onCartClick }) => {
+  // --- Estados del Menú ---
   const [isActive, setIsActive] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const navigate = useNavigate();
 
+  // --- Estados de Búsqueda ---
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
   const [isLoadingSearch, setIsLoadingSearch] = useState(false);
   
-  // --- Lógica de Posicionamiento del Portal ---
+  // --- LÓGICA DE LOGIN/LOGOUT (RE-INTEGRADA) ---
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser"))
+  );
+  
+  // --- Lógica de Posicionamiento y Refs ---
   const searchFormRef = useRef(null);
+  const suggestionsRef = useRef(null); 
   const [searchRect, setSearchRect] = useState(null);
 
   // --- Lógica de "Debounce" (Antirrebote) ---
@@ -52,7 +62,6 @@ const Navbar = ({ onCartClick }) => {
       return;
     }
     setIsLoadingSearch(true);
-
     const timerId = setTimeout(async () => {
       try {
         const response = await fetch(`https://dummyjson.com/products/search?q=${searchQuery}`);
@@ -74,23 +83,37 @@ const Navbar = ({ onCartClick }) => {
     };
   }, [searchQuery]); 
 
-  // --- Cierra el menú si se hace clic fuera o se hace scroll ---
+  // --- EFECTOS DE LISTENERS ---
   useEffect(() => {
+    // Listener para cerrar menú de búsqueda
     const handleClickOutside = (event) => {
-      if (searchFormRef.current && !searchFormRef.current.contains(event.target)) {
+      if (
+        searchFormRef.current && 
+        !searchFormRef.current.contains(event.target) &&
+        suggestionsRef.current &&
+        !suggestionsRef.current.contains(event.target)
+      ) {
         closeSuggestions();
       }
     };
     
-    document.addEventListener("click", handleClickOutside);
+    // Listener para actualizar el usuario (cuando loguea/desloguea)
+    const handleUserChange = () => {
+      setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("scroll", closeSuggestions); 
+    window.addEventListener("userChanged", handleUserChange); // Listener de login/logout
     
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("scroll", closeSuggestions);
+      window.removeEventListener("userChanged", handleUserChange);
     };
-  }, []); 
+  }, []); // El array vacío es correcto
 
+  // --- Manejadores de Eventos ---
   const toggleMenu = () => setIsActive(!isActive); 
   
   const closeSuggestions = () => {
@@ -101,15 +124,25 @@ const Navbar = ({ onCartClick }) => {
     setHoveredCategory(null);
     setIsActive(false); 
   };
+
+  // --- FUNCIÓN DE LOGOUT (RE-INTEGRADA) ---
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    setCurrentUser(null); // Actualiza el estado
+    // window.dispatchEvent(new Event("userChanged")); // Opcional, ya que estamos actualizando el estado local
+    navigate("/login", { replace: true });
+    closeDropdown(); // Cierra el menú móvil si está abierto
+  };
   
+  // NAVEGACIÓN MANUAL (para arreglar el bug de clic)
   const handleSuggestionClick = (path) => {
-    navigate(path); 
-    closeSuggestions(); 
+    navigate(path);
+    closeSuggestions();
   };
 
   const handleCategoryClick = (path) => {
-    navigate(path); 
-    closeDropdown(); 
+    navigate(path);
+    closeDropdown();
   };
 
   const handleSearchSubmit = (e) => {
@@ -230,8 +263,9 @@ const Navbar = ({ onCartClick }) => {
                 <SearchSuggestions 
                   results={searchResults}
                   query={searchQuery}
-                  onNavigate={handleSuggestionClick} 
-                  searchRect={searchRect} 
+                  onNavigate={handleSuggestionClick}
+                  searchRect={searchRect}
+                  ref={suggestionsRef} 
                 />
               )}
             </form>
@@ -246,20 +280,57 @@ const Navbar = ({ onCartClick }) => {
             </a>
           </div>
 
+          {/* --- NAVBAR-END (FUSIONADO Y CORREGIDO) --- */}
           <div className="navbar-end">
-            <Link className="navbar-item is-icon-text" to={"/login"} onClick={closeDropdown}>
-              <span className="icon"><i className="fas fa-bell"></i></span>
-              <span className="is-size-7"> Login </span>
-            </Link>
-            <Link className="navbar-item is-icon-text" to={"/profile"} onClick={closeDropdown}>
-              <span className="icon"><i className="fas fa-user"></i></span>
-              <span className="is-size-7">Mi cuenta</span>
-            </Link>
-            <Link className="navbar-item is-icon-text" to="#" onClick={() => { onCartClick(); closeDropdown(); }}>
+            
+            {/* Muestra LOGIN si NO hay usuario */}
+            {!currentUser && (
+              <Link
+                className="navbar-item is-icon-text"
+                to="/login"
+                onClick={closeDropdown}
+              >
+                <span className="icon"><i className="fas fa-bell"></i></span>
+                <span className="is-size-7">Login</span>
+              </Link>
+            )}
+
+            {/* Carrito (siempre visible) */}
+            <a
+              className="navbar-item is-icon-text"
+              onClick={() => { onCartClick(); closeDropdown(); }}
+            >
               <span className="icon"><i className="fas fa-shopping-cart"></i></span>
               <span className="is-size-7">Carrito</span>
-            </Link>
+            </a>
+            
+            {/* Muestra MI CUENTA y CERRAR SESIÓN si SÍ hay usuario */}
+            {currentUser && (
+              <>
+                <Link
+                  className="navbar-item is-icon-text" to="/profile"
+                  onClick={closeDropdown}
+                >
+                  <span className="icon"><i className="fas fa-user"></i></span>
+                  <span className="is-size-7">Mi cuenta</span>
+                </Link>
+                
+                <a 
+                  className="navbar-item is-icon-text" 
+                  onClick={handleLogout} // Llama a la función de logout
+                >
+                  <span className="icon"><i className="fas fa-sign-out-alt"></i></span>
+                  <span className="is-size-7">Cerrar sesión</span>
+                </a>
+        
+                <span className="navbar-item is-size-7">
+                  Hola, {currentUser.firstName}
+                </span>
+              </>
+            )}
+            
           </div>
+
         </div>
       </nav>
     </>
