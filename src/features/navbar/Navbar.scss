@@ -18,6 +18,7 @@ $sub-menu-bg: #f7f7f7;
   width: 400px;
   max-width: 500px;
   height: 46px !important;
+  border: solid 1px #333 !important;
 }
 
 .navbar.is-exito {
@@ -48,6 +49,8 @@ $sub-menu-bg: #f7f7f7;
     
     .button.is-dark {
       background-color: #555; 
+      height: 46px;
+      border: solid 1px #333;
       &:hover {
         background-color: #333;
       }

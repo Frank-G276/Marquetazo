@@ -11,6 +11,10 @@ import CategoryPage from './features/category/CategoryPage';
 import ProductDetailPage from './features/product/ProductDetailPage';
 import Profile from './features/profile/Profile';
 import SearchPage from './features/search/SearchPage';
+import AboutUs from './features/about/AboutUs';
+import ContactUs from './features/contact/ContactUs';
+import ShippingPolicy from './features/policy/ShippingPolicy';
+import PrivacyPolicy from './features/policy/PrivacyPolicy';
 
 
 function App() {
@@ -26,12 +30,16 @@ function App() {
       <Route path="/product/:productId" element={<ProductDetailPage />} />
       <Route path="/profile" element={<Profile />} />
       <Route path='/search' element={<SearchPage/>} />
-      <Route path="/login" element={<Login />} />
-
-    <Route path="/register" element={<Register />} />
+      <Route path='/about-us' element={<AboutUs/>} />
+      <Route path='/contact' element={<ContactUs/>} />
+      <Route path="/shipping" element={<ShippingPolicy />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      
     </Route>
     
-    
+    <Route path="/login" element={<Login />} />
+
+    <Route path="/register" element={<Register />} />
     
 
     

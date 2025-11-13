@@ -1,0 +1,71 @@
+// src/features/policy/Policy.scss
+
+@use '../../../my-bulma-project.scss' as vars;
+
+.policy-page {
+  
+  // Hero
+  .policy-hero.hero.is-primary {
+    background-color: vars.$organic-green;
+  }
+
+  // Estilos del "Timeline" de envío
+  .shipping-steps {
+    .step-item {
+      padding: 0 1rem;
+    }
+    
+    .step-icon {
+      height: 120px;
+      width: 120px;
+      margin: 0 auto 1.5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 3px solid vars.$organic-green;
+      color: vars.$organic-green;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: vars.$organic-green;
+        color: white;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  // Estilos de la Tabla de Costos
+  .policy-table {
+    border-radius: 8px;
+    overflow: hidden; // Para que el radius afecte al thead
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+    thead {
+      background-color: #f0f0f0;
+      th {
+        color: #333;
+      }
+    }
+  }
+
+  // Aviso de Envío Gratis
+  .notification.is-warning {
+    background-color: vars.$citrus-orange;
+    color: vars.$dark-text;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-radius: 8px;
+  }
+
+  // Secciones inferiores
+  .policy-section {
+    display: flex;
+    align-items: flex-start;
+    
+    .policy-icon {
+      color: vars.$organic-green;
+      margin-right: 1.5rem;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+// src/features/about/AboutUs.scss
+
+// Importamos tus variables de color
+@use '../../../my-bulma-project.scss' as vars;
+@use "sass:color" as color;
+.about-us-page {
+  
+  // 1. Estilos del Hero
+  .about-hero.hero.is-primary {
+    
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/images/about-hero.jpg');
+    background-size: cover;
+    background-position: center;
+
+    .title, .subtitle {
+      color: vars.$light-bg; // Texto claro
+    }
+  }
+
+  // 2. Estilos de la Misión
+  .mission-image {
+    img {
+      border-radius: 12px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      object-fit: cover;
+    }
+  }
+
+  // 3. Estilos de los Valores
+  .values-section {
+    .icon {
+      i {
+        font-size: 3.5rem; 
+      }
+    }
+    
+    .has-text-primary {
+      color: vars.$organic-green !important; 
+    }
+  }
+
+  
+  // 4. Estilos del CTA
+  .cta-section {
+    .button.is-warning {
+      background-color: vars.$citrus-orange;
+      color: vars.$dark-text;
+      font-weight: bold;
+      border-color: transparent;
+
+      &:hover {
+        background-color: color.adjust(vars.$citrus-orange, $lightness: -5%);
+        border-color: transparent;
+      }
+    }
+  }
+}
