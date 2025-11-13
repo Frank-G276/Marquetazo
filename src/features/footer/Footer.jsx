@@ -36,14 +36,12 @@ const Footer = () => {
             <ul>
               <li><Link to="/about-us">Sobre Nosotros</Link></li>
               <li><Link to="/contact">Contáctanos</Link></li>
-              <li><Link to="/jobs">Trabaja con Nosotros</Link></li>
             </ul>
           </div>
 
           <div className="column">
             <h4 className="title is-5 footer-title">Soporte</h4>
             <ul>
-              <li><Link to="/faq">Preguntas Frecuentes</Link></li>
               <li><Link to="/shipping">Políticas de Envío</Link></li>
               <li><Link to="/privacy">Políticas de Privacidad</Link></li>
             </ul>

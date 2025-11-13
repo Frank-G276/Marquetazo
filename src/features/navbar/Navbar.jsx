@@ -273,7 +273,7 @@ const Navbar = ({ onCartClick }) => {
 
             {/* Ubicación */}
             <a className="navbar-item has-text-weight-bold is-hidden-touch">
-              <DeliverySelector />
+              <DeliverySelector className="navbar-item is-icon-text" />
               <span className="icon is-small is-right">
                 <i className="fas fa-chevron-right"></i>
               </span>

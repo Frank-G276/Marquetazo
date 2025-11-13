@@ -27,7 +27,7 @@ $light-grey: #E0E0E0;
   $navbar-item-color: $light-bg,
   $navbar-item-img-max-height: 5rem,
 
-  $navbar-height: 6rem
+  $navbar-height: 6rem,
 );
 
 // Importa la Google Font que elijas
@@ -40,4 +40,5 @@ $light-grey: #E0E0E0;
 a:hover {
   color: $dark-text;
 }
+
 

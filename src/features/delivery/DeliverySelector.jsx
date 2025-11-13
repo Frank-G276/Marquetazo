@@ -5,6 +5,15 @@ const DeliverySelector = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const userEmail = currentUser?.email || "guest";
 
+  if (!currentUser) {
+    return (
+      <div className="delivery-entry" style={{ cursor: "pointer" }}>
+        <i className="fas fa-map-marker-alt"></i>
+        <span>¿Cómo quieres recibir tu pedido?</span>
+      </div>
+    );
+  }
+
   // Claves únicas por usuario
   const modeKey = `deliveryMode_${userEmail}`;
   const addressKey = `deliveryAddress_${userEmail}`;
@@ -50,7 +59,7 @@ const DeliverySelector = () => {
         <div className="modal-background" onClick={() => setIsActive(false)}></div>
         <div className="modal-card">
           <header className="modal-card-head">
-            <p className="modal-card-title">
+            <p className="modal-card-title modal-text-color">
               Selecciona cómo quieres recibir tu pedido
             </p>
           </header>

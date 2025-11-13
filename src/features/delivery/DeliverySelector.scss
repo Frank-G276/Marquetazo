@@ -1,17 +1,62 @@
-.delivery-entry {
+/* 🔸 Estilos del delivery dentro del navbar */
+.navbar-item .delivery-entry {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   color: white;
   font-weight: 600;
-  transition: opacity 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-size: 0.9rem;
 
   i {
     color: white;
+    font-size: 1rem;
+    transition: color 0.2s ease-in-out;
   }
 
-  &:hover {
-    opacity: 0.9;
-    text-decoration: underline;
+  span {
+    transition: color 0.2s ease-in-out, font-weight 0.2s ease-in-out;
+  }
+}
+
+.navbar-item:hover .delivery-entry {
+  color: #333;
+  font-weight: 700; /* 👉 Negrita en hover */
+  text-decoration: underline;
+  transform: scale(1.02);
+  text-decoration: none;
+  i {
+    color: #333;
+  }
+
+  span {
+    color: #333;
+    font-weight: 700;
+  }
+}
+
+/* 🔸 Estilo del modal */
+.modal-card {
+  border-radius: 10px;
+  overflow: hidden;
+
+  .modal-card-head {
+    background-color: #2E7D32;
+  
+  }
+
+  .modal-text-color {
+        color: rgb(223, 222, 222) !important;
+  }
+
+  .button.is-success {
+    background-color: #2E7D32;
+    color: rgb(223, 222, 222);
+    border: none;
+
+    &:hover {
+      background-color: #2E7D32;
+    }
   }
 }
