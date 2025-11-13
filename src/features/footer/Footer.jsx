@@ -1,16 +1,15 @@
-// src/features/footer/Footer.jsx
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logoMarquetazo from '../../assets/images/Marquetazo.png'; 
 import './Footer.scss';
 
 const Footer = () => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
   return (
     <footer className="footer custom-footer">
       <div className="container">
         <div className="columns">
-          
           
           <div className="column is-one-quarter">
             <Link to="/">
@@ -32,7 +31,6 @@ const Footer = () => {
             </div>
           </div>
 
-         
           <div className="column">
             <h4 className="title is-5 footer-title">Marquetazo</h4>
             <ul>
@@ -42,7 +40,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          
           <div className="column">
             <h4 className="title is-5 footer-title">Soporte</h4>
             <ul>
@@ -52,19 +49,26 @@ const Footer = () => {
             </ul>
           </div>
 
-          
+          {/* Mi cuenta */}
           <div className="column">
             <h4 className="title is-5 footer-title">Mi Cuenta</h4>
             <ul>
-              <li><Link to="/login">Iniciar Sesión</Link></li>
-              <li><Link to="/register">Registrarme</Link></li>
-              <li><Link to="/Checkout">Ver Carrito</Link></li>
+              {currentUser ? (
+                <>
+                  <li><Link to="/profile">Mi Perfil</Link></li>
+                  <li><Link to="/checkout">Ver Carrito</Link></li>
+                </>
+              ) : (
+                <>
+                  <li><Link to="/login">Iniciar Sesión</Link></li>
+                  <li><Link to="/register">Registrarme</Link></li>
+                </>
+              )}
             </ul>
           </div>
 
         </div>
         
-       
         <div className="content has-text-centered">
           <p className="is-size-7">
             © 2025 Marquetazo. Todos los derechos reservados.
