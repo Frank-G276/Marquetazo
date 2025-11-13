@@ -1,0 +1,17 @@
+.delivery-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-weight: 600;
+  transition: opacity 0.2s ease-in-out;
+
+  i {
+    color: white;
+  }
+
+  &:hover {
+    opacity: 0.9;
+    text-decoration: underline;
+  }
+}
