@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import { Outlet } from 'react-router-dom'; 
 import Navbar from '../features/navbar/Navbar';
-import ShoppingCart from '../features/shoppingCart/ShoppingCart';
+import ShoppingCart from '../features/ShoppingCart/ShoppingCart';
 import { useProducts } from '../hooks/useProducts'
-import { useCart } from '../features/shoppingCart/CartContext'
+import { useCart } from '../features/ShoppingCart/CartContext'
 import Footer from '../features/footer/Footer';
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ProductCard.scss'; 
-import { useCart } from "../shoppingCart/CartContext";
+import { useCart } from "../ShoppingCart/CartContext";
 
 
 const ProductCard = ({ product }) => {

@@ -6,7 +6,7 @@ import Login from './features/auth/login/Login';
 import { Routes, Route } from 'react-router-dom';
 import Register from './features/auth/register/Register';
 import Layout from './components/Layout';
-import Checkout from "./features/shoppingCart/CheckOut"; 
+import Checkout from "./features/ShoppingCart/CheckOut"; 
 import CategoryPage from './features/category/CategoryPage';
 import ProductDetailPage from './features/product/ProductDetailPage';
 import Profile from './features/profile/Profile';
