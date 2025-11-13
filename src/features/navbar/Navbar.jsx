@@ -5,10 +5,11 @@ import '../../../my-bulma-project.scss';
 import logoMarquetazo from '../../assets/images/Marquetazo.png';
 import { categoryStructure } from '../../data/categoryStructure';
 import SearchSuggestions from './SearchSuggestions'; 
+import DeliverySelector from '../delivery/deliverySelector.jsx';
 
 // --- Panel de Subcategorías (Nivel 2) ---
 const SubcategoryPanel = ({ category, onNavigate }) => {
-  return (
+  return (  
     <div className="subcategory-panel menu">
       <p className="menu-label">{category.name}</p>
       <ul className="menu-list">
@@ -272,8 +273,7 @@ const Navbar = ({ onCartClick }) => {
 
             {/* Ubicación */}
             <a className="navbar-item has-text-weight-bold is-hidden-touch">
-              <span className="icon"><i className="fas fa-map-marker-alt"></i></span>
-              <span>¿Cómo quieres recibir tu pedido?</span>
+              <DeliverySelector />
               <span className="icon is-small is-right">
                 <i className="fas fa-chevron-right"></i>
               </span>
