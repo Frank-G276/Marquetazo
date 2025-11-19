@@ -1,17 +1,22 @@
 // --- Estilos del Navbar ---
-$exito-yellow: #2E7D32; 
+$exito-yellow: #2E7D32;
 
 // Variables de color para los menús
 $menu-bg: #ffffff;
 $menu-text: #363636;
 $menu-hover-bg: #f5f5f5;
-$menu-active-bg: #2E7D32; 
+$menu-active-bg: #2E7D32;
 $menu-active-text: #ffffff;
 $sub-menu-bg: #f7f7f7;
 
 
 .navbar-brand {
-  margin-left: 7rem;
+  margin-left: 2rem;
+
+  @media screen and (max-width: 1023px) {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .input-navbar {
@@ -19,38 +24,80 @@ $sub-menu-bg: #f7f7f7;
   max-width: 500px;
   height: 46px !important;
   border: solid 1px #333 !important;
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .navbar.is-exito {
   // Navbar transparente por defecto
-  background-color: $exito-yellow; 
+  background-color: $exito-yellow;
   box-shadow: none;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-
-  
 
   .navbar-start {
     flex-grow: 1;
     justify-content: center;
-    margin-right: 2rem; 
+    margin-right: 2rem;
+
+    @media screen and (max-width: 1023px) {
+      margin-right: 0;
+      justify-content: flex-start;
+    }
   }
-  
+
+  // Estilos para el menú móvil (burger menu)
+  .navbar-menu {
+    @media screen and (max-width: 1023px) {
+      background-color: $exito-yellow;
+
+      .navbar-item {
+        color: white;
+
+        &:hover {
+          background-color: darken($exito-yellow, 10%);
+        }
+      }
+
+      // Iconos en el navbar-end
+      .navbar-end .navbar-item {
+        color: white;
+
+        .icon {
+          color: white;
+        }
+
+        span {
+          color: white;
+        }
+      }
+    }
+  }
+
   .navbar-item .field.has-addons {
     width: 100%;
-    max-width: 500px; 
-    
-    .input.is-rounded {
-        border-color: transparent;
-        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
-        &:focus {
-            box-shadow: 0 0 0 0.125em rgba(0, 0, 0, 0.25);
-        }
+    max-width: 500px;
+
+    @media screen and (max-width: 1023px) {
+      max-width: 100%;
     }
-    
+
+    .input.is-rounded {
+      border-color: transparent;
+      box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+
+      &:focus {
+        box-shadow: 0 0 0 0.125em rgba(0, 0, 0, 0.25);
+      }
+    }
+
     .button.is-dark {
-      background-color: #555; 
+      background-color: #555;
       height: 46px;
       border: solid 1px #333;
+
       &:hover {
         background-color: #333;
       }
@@ -64,7 +111,7 @@ $sub-menu-bg: #f7f7f7;
   justify-content: center;
   align-items: center;
   padding: 0.5rem 0.75rem;
-  
+
   .icon {
     margin-bottom: 2px;
   }
@@ -78,13 +125,19 @@ $sub-menu-bg: #f7f7f7;
 
 // --- ESTILOS DEL DROPDOWN DE CATEGORÍAS ---
 .navbar-item.is-categories-dropdown {
-  
+
+  // Ocultar en tablets y móviles (aparecerá en el menú burger)
+  @media screen and (max-width: 1023px) {
+    display: none !important;
+  }
+
   .navbar-link {
     display: flex;
     align-items: center;
     justify-content: center;
+
     &::after {
-      display: none; 
+      display: none;
     }
   }
 
@@ -92,28 +145,29 @@ $sub-menu-bg: #f7f7f7;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     width: 250px;
-    padding: 0; 
+    padding: 0;
 
     .navbar-item.category-item {
-      padding: 0; 
-      position: relative; 
-      
+      padding: 0;
+      position: relative;
+
       .navbar-link {
         color: $menu-text;
         font-weight: bold;
         padding: 0.75rem 1.25rem;
         border-radius: 0;
-        
+
         &:hover {
           background-color: $menu-hover-bg;
           color: $menu-text;
         }
 
-        &.is-active, .is-active & {
+        &.is-active,
+        .is-active & {
           background-color: $menu-active-bg;
           color: $menu-active-text;
         }
-        
+
         .icon.is-right {
           margin-left: auto;
           margin-right: 0;
@@ -124,25 +178,25 @@ $sub-menu-bg: #f7f7f7;
 
   .navbar-dropdown.is-subcategory-dropdown {
     position: absolute;
-    left: 100%; 
-    top: 0; 
+    left: 100%;
+    top: 0;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     background-color: $sub-menu-bg;
-    padding: 0; 
+    padding: 0;
 
     .subcategory-panel {
-      width: 100%; 
-      height: auto; 
-      max-height: calc(100vh - 6rem); 
-      box-shadow: none; 
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - 6rem);
+      box-shadow: none;
       padding: 1rem;
-      background-color: transparent; 
+      background-color: transparent;
 
       .menu-label {
         padding-left: 0.75rem;
         padding-bottom: 1rem;
         border-bottom: 1px solid #dbdbdb;
-        text-transform: none; 
+        text-transform: none;
         font-size: 1.2rem;
         font-weight: bold;
         color: $menu-text;
@@ -150,28 +204,33 @@ $sub-menu-bg: #f7f7f7;
 
       .menu-list {
         padding-top: 1rem;
+
         a {
           text-transform: capitalize;
           color: #555;
           padding: 0.5em 0.75em;
           background-color: transparent;
-          
+
           &:hover {
             background-color: $menu-active-bg;
-            color: $menu-active-text; 
+            color: $menu-active-text;
           }
         }
       }
     }
   }
-} 
+}
 
 
 /* --- ESTILOS PARA LA BÚSQUEDA INSTANTÁNEA --- */
 
 .search-form {
   position: relative;
-  
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+  }
+
   .control.is-expanded {
     position: relative;
   }
@@ -193,7 +252,7 @@ $sub-menu-bg: #f7f7f7;
   opacity: 0;
   transform: translateY(-10px);
   animation: slideDownFadeIn 0.2s ease-out forwards;
-  
+
   // Estilos de 'box' de Bulma
   background-color: white;
   border-radius: 6px;
@@ -212,7 +271,7 @@ $sub-menu-bg: #f7f7f7;
 .suggestion-list {
   list-style: none;
   margin: 0;
-  
+
   .suggestion-item {
     display: flex;
     align-items: center;
@@ -220,12 +279,12 @@ $sub-menu-bg: #f7f7f7;
     border-radius: 4px;
     color: #363636;
     font-size: 0.9rem;
-    
+
     &:hover {
       background-color: #f5f5f5;
     }
   }
-  
+
   .suggestion-image {
     width: 32px;
     height: 32px;
@@ -241,6 +300,7 @@ $sub-menu-bg: #f7f7f7;
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

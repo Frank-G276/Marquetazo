@@ -5,8 +5,15 @@
 .policy-page {
   
   // Hero
-  .policy-hero.hero.is-primary {
-    background-color: vars.$organic-green;
+  .about-hero.hero.is-primary {
+    
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/images/about-hero.jpg');
+    background-size: cover;
+    background-position: center;
+
+    .title, .subtitle {
+      color: vars.$light-bg; // Texto claro
+    }
   }
 
   // Estilos del "Timeline" de envío

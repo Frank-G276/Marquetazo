@@ -18,8 +18,9 @@
 .cart-sidebar {
   position: fixed;
   top: 0;
-  right: -400px;
+  right: -100%; // Cambiado para asegurar que esté completamente oculto
   width: 380px;
+  max-width: 100%; // Asegurar que no exceda el ancho de pantalla
   height: 100vh;
   background: linear-gradient(180deg, #ffffff 0%, #8aac8c 100%);
   box-shadow: -4px 0 10px rgba(0, 0, 0, 0.25);
@@ -28,6 +29,17 @@
   transition: right 0.3s ease;
   display: flex;
   flex-direction: column;
+
+  // Responsive: hacer el sidebar más angosto en móviles
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    right: -100%;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1023px) {
+    width: 350px;
+    right: -100%;
+  }
 
   &.open {
     right: 0;
@@ -45,38 +57,39 @@
 
   .cart-content {
     padding: 1rem;
-    
+
     font-weight: bold;
     flex: 1;
     overflow-y: auto;
   }
 
-    .cart-items {
-      margin-bottom: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+  .cart-items {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
-      .cart-item {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.5rem;
-        align-items: center;
-        background: #ffffffd0;
-        padding: 0.75rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,.08);
-      }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      align-items: center;
+      background: #ffffffd0;
+      padding: 0.75rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, .08);
     }
+  }
 
   .icon {
     cursor: pointer;
     margin-left: 5px;
     color: #000;
     font-size: 1rem;
+
     &:hover {
       color: #ccc;
-  }
+    }
   }
 
   .img-cart {

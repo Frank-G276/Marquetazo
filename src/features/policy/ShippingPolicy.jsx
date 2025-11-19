@@ -9,7 +9,7 @@ const ShippingPolicy = () => {
     <div className="policy-page">
       
       {/* --- 1. Hero --- */}
-      <section className="hero is-primary policy-hero">
+      <section className="hero is-medium is-primary about-hero">
         <div className="hero-body has-text-centered">
           <p className="title is-1">
             Políticas de Envío
