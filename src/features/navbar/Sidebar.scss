@@ -16,7 +16,6 @@ $sub-sidebar-hover-bg: #f5f5f5;
   z-index: 35;
 }
 
-// --- Contenedor principal ---
 .sidebar-container {
   position: fixed;
   top: 0;
@@ -31,19 +30,16 @@ $sub-sidebar-hover-bg: #f5f5f5;
   }
 }
 
-// --- Estilos base para los menús laterales ---
 .sidebar-menu, .subcategory-panel {
   height: 100vh;
   display: flex;
   flex-direction: column;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-  // Anula los estilos por defecto de Bulma para el componente .menu
   &.menu {
     padding: 0;
   }
 }
 
-// --- Panel Principal de Categorías (Nivel 1) ---
 .sidebar-menu {
   width: 280px;
   background-color: $sidebar-bg;
@@ -90,7 +86,6 @@ $sub-sidebar-hover-bg: #f5f5f5;
   }
 }
 
-// --- Panel de Subcategorías (Nivel 2) ---
 .subcategory-panel {
   width: 350px;
   background-color: $sub-sidebar-bg;

@@ -1,6 +1,5 @@
 $exito-yellow: #2E7D32;
 
-// Variables de color para los menús
 $menu-bg: #ffffff;
 $menu-text: #363636;
 $menu-hover-bg: #f5f5f5;
@@ -31,7 +30,6 @@ $sub-menu-bg: #f7f7f7;
 }
 
 .navbar.is-exito {
-  // Navbar transparente por defecto
   background-color: $exito-yellow;
   box-shadow: none;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -47,7 +45,6 @@ $sub-menu-bg: #f7f7f7;
     }
   }
 
-  // Estilos para el menú móvil (burger menu)
   .navbar-menu {
     @media screen and (max-width: 1023px) {
       background-color: $exito-yellow;
@@ -60,7 +57,6 @@ $sub-menu-bg: #f7f7f7;
         }
       }
 
-      // Iconos en el navbar-end
       .navbar-end .navbar-item {
         color: white;
 
@@ -122,10 +118,8 @@ $sub-menu-bg: #f7f7f7;
   object-fit: contain;
 }
 
-// --- ESTILOS DEL DROPDOWN DE CATEGORÍAS ---
 .navbar-item.is-categories-dropdown {
 
-  // Ocultar en tablets y móviles (aparecerá en el menú burger)
   @media screen and (max-width: 1023px) {
     display: none !important;
   }
@@ -221,7 +215,6 @@ $sub-menu-bg: #f7f7f7;
 }
 
 
-/* --- ESTILOS PARA LA BÚSQUEDA INSTANTÁNEA --- */
 
 .search-form {
   position: relative;
@@ -304,4 +297,38 @@ $sub-menu-bg: #f7f7f7;
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.navbar-cart {
+  position: relative;
+  cursor: pointer;
+
+  .cart-badge {
+    position: absolute;
+    top: 8px;
+    right: -2px;
+    background: #ff3860; 
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+    animation: pop 0.3s ease-out;
+  }
+}
+
+@keyframes pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.bounce {
+  animation: bounce 0.3s ease;
+}
+
+@keyframes bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
 }

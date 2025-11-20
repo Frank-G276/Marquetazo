@@ -16,7 +16,6 @@ const PrivacyPolicy = () => {
         </div>
       </section>
 
-      {/* --- 2. Contenido Legal --- */}
       <section className="section">
         <div className="container">
           <div className="columns is-centered">

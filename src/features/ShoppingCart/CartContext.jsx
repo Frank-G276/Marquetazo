@@ -3,7 +3,18 @@ import { createContext, useContext, useState, useEffect, useCallback } from "rea
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
+
+
   const [carrito, setCarrito] = useState([]);
+
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    if (carrito.length > 0) {
+      setAnimate(true);
+      setTimeout(() => setAnimate(false), 300);
+    }
+  }, [carrito.length]);
 
   const loadCartForCurrentUser = useCallback(() => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -19,6 +30,7 @@ export function CartProvider({ children }) {
   useEffect(() => {
     loadCartForCurrentUser();
   }, [loadCartForCurrentUser]);
+  
   useEffect(() => {
     const handler = () => loadCartForCurrentUser();
     window.addEventListener('userChanged', handler);
@@ -61,7 +73,7 @@ export function CartProvider({ children }) {
   const clearCart = () => setCarrito([]);
 
   return (
-    <CartContext.Provider value={{ carrito, addToCart, reduceToCart, deleteFromCart, clearCart }}>
+    <CartContext.Provider value={{ carrito, addToCart, reduceToCart, deleteFromCart, clearCart, animate }}>
       {children}
     </CartContext.Provider>
   );

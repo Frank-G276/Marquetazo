@@ -58,7 +58,6 @@ const ProductDetailPage = () => {
       <div className="container">
         <div className="columns">
           
-          {/* Columna 1: Galería de Imágenes */}
           <div className="column is-half">
             <figure className="image is-4by3">
               <img src={selectedImage} alt={product.title} />
@@ -79,7 +78,6 @@ const ProductDetailPage = () => {
             </div>
           </div>
 
-          {/* Columna 2: Información y Compra */}
           <div className="column is-half">
             <h1 className="title is-2">{product.title}</h1>
             <h2 className="subtitle is-4 has-text-grey">{product.brand}</h2>

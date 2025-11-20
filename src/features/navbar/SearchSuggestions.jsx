@@ -18,7 +18,6 @@ const SearchSuggestions = ({ results, query, onNavigate, searchRect }) => {
     <div className="search-suggestions box" style={portalStyle}> 
       <div className="columns">
         
-        {/* Columna de Sugerencias */}
         <div className="column is-two-thirds">
           <h4 className="title is-6 suggestion-title">Sugerencias</h4>
           <ul className="suggestion-list">
@@ -40,7 +39,6 @@ const SearchSuggestions = ({ results, query, onNavigate, searchRect }) => {
           </ul>
         </div>
         
-        {/* Columna de Marcas */}
         <div className="column">
           <h4 className="title is-6 suggestion-title">Marcas</h4>
           <ul className="suggestion-list">
@@ -63,7 +61,6 @@ const SearchSuggestions = ({ results, query, onNavigate, searchRect }) => {
 
       </div>
       
-      {/* Botón "Ver todos los resultados" */}
       <div className="has-text-centered">
         <Link 
           to={`/search?q=${encodeURIComponent(query)}`}

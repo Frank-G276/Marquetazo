@@ -5,7 +5,9 @@ import '../../../my-bulma-project.scss';
 import logoMarquetazo from '../../assets/images/Marquetazo.png';
 import { categoryStructure } from '../../data/categoryStructure.jsx';
 import SearchSuggestions from './SearchSuggestions'; 
-import DeliverySelector from '../delivery/DeliverySelector.jsx';
+import DeliverySelector from '../delivery/deliverySelector.jsx';
+import { useCart } from "../ShoppingCart/CartContext";
+
 
 const SubcategoryPanel = ({ category, onNavigate }) => {
   return (  
@@ -47,7 +49,11 @@ const Navbar = ({ onCartClick }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("currentUser"))
   );
-  
+
+  const { carrito, animate } = useCart();
+  const distinctItems = carrito.length;  
+
+
   // --- Lógica de Posicionamiento y Refs ---
   const searchFormRef = useRef(null);
   const suggestionsRef = useRef(null); 
@@ -97,14 +103,14 @@ const Navbar = ({ onCartClick }) => {
       }
     };
     
-    // Listener para actualizar el usuario (cuando loguea/desloguea)
+    
     const handleUserChange = () => {
       setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("scroll", closeSuggestions); 
-    window.addEventListener("userChanged", handleUserChange); // Listener de login/logout
+    window.addEventListener("userChanged", handleUserChange); 
     
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -113,7 +119,7 @@ const Navbar = ({ onCartClick }) => {
     };
   }, []); 
 
-  // --- Manejadores de Eventos ---
+ 
   const toggleMenu = () => setIsActive(!isActive); 
   
   const closeSuggestions = () => {
@@ -125,7 +131,7 @@ const Navbar = ({ onCartClick }) => {
     setIsActive(false); 
   };
 
-  // --- FUNCIÓN DE LOGOUT (RE-INTEGRADA) ---
+  
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
     setCurrentUser(null); 
@@ -133,7 +139,7 @@ const Navbar = ({ onCartClick }) => {
     closeDropdown(); 
   };
   
-  // NAVEGACIÓN MANUAL (para arreglar el bug de clic)
+  
   const handleSuggestionClick = (path) => {
     navigate(path);
     closeSuggestions();
@@ -166,7 +172,7 @@ const Navbar = ({ onCartClick }) => {
             <img src={logoMarquetazo} alt="Logo Supermercado Marquetazo" />
           </Link>
 
-          {/* Dropdown de "Menú" (Categorías) */}
+        
           <div className="navbar-item has-dropdown is-hoverable is-categories-dropdown">
             <a className="navbar-link">
               <span className="icon-text has-text-weight-bold">
@@ -278,10 +284,9 @@ const Navbar = ({ onCartClick }) => {
             </a>
           </div>
 
-          {/* --- NAVBAR-END (FUSIONADO Y CORREGIDO) --- */}
           <div className="navbar-end">
             
-            {/* Muestra LOGIN si NO hay usuario */}
+           
             {!currentUser && (
               <Link
                 className="navbar-item is-icon-text"
@@ -293,16 +298,19 @@ const Navbar = ({ onCartClick }) => {
               </Link>
             )}
 
-            {/* Carrito (siempre visible) */}
+         
             <a
-              className="navbar-item is-icon-text"
+              className={`navbar-item navbar-cart ${animate ? "bounce" : ""} is-icon-text`}
               onClick={() => { onCartClick(); closeDropdown(); }}
             >
+              {distinctItems > 0 && (
+                <span className="cart-badge">{distinctItems}</span>
+              )}
               <span className="icon"><i className="fas fa-shopping-cart"></i></span>
               <span className="is-size-7">Carrito</span>
             </a>
             
-            {/* Muestra MI CUENTA y CERRAR SESIÓN si SÍ hay usuario */}
+     
             {currentUser && (
               <>
                 <Link
