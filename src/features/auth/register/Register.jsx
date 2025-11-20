@@ -1,28 +1,23 @@
-// src/features/auth/Register.jsx
-
-import React, { useState } from 'react';
-import './Register.scss'; // Reutilizaremos un estilo similar al de Login
+import { useState } from 'react';
+import './Register.scss'; 
 import { Link } from "react-router-dom";
 
 
 const Register = () => {
-  // Estado para todos los campos del formulario
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   
-  // Estado para manejar los mensajes de error o éxito
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError(''); // Limpia errores anteriores
-    setSuccess(''); // Limpia éxitos anteriores
+    setError(''); 
+    setSuccess(''); 
 
-    // --- 1. Validación ---
     if (password !== confirmPassword) {
       setError('Las contraseñas no coinciden.');
       return;
@@ -68,10 +63,8 @@ const Register = () => {
       };
       localStorage.setItem(`cart_${newUser.email}`, JSON.stringify(userCart));
 
-      // Éxito!
       setSuccess('¡Registro exitoso! Ya puedes iniciar sesión.');
       
-      // Limpiamos el formulario
       setFirstName('');
       setLastName('');
       setEmail('');

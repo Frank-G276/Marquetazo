@@ -1,18 +1,13 @@
-// src/features/home/ProductCarousel.jsx
-
-import React from 'react';
-import ProductCard from './ProductCard'; // Reutilizamos tu componente de tarjeta
-import './ProductCarousel.scss'; // Aquí crearemos los efectos
+import ProductCard from './ProductCard';
+import './ProductCarousel.scss';
 
 const ProductCarousel = ({ products }) => {
   if (!products || products.length === 0) {
-    return null; // No mostrar nada si no hay productos
+    return null;
   }
 
   return (
-    // El 'container' es para los efectos de difuminado en los bordes
     <div className="carousel-container">
-      {/* El 'track' es el que tiene el scroll y el snap */}
       <div className="carousel-track">
         {products.map(product => (
           <ProductCard key={product.id} product={product} />

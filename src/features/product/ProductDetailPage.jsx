@@ -1,6 +1,4 @@
-// src/features/product/ProductDetailPage.jsx
-
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProductDetailPage.scss';
 import { useCart } from "../ShoppingCart/CartContext";
@@ -15,10 +13,9 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      // Reiniciamos todo al empezar una nueva búsqueda
       setLoading(true);
       setError(null);
-      setProduct(null); // Importante si navegas de un producto a otro
+      setProduct(null); 
       
       try {
         const response = await fetch(`https://dummyjson.com/products/${productId}`);
@@ -38,15 +35,10 @@ const ProductDetailPage = () => {
     fetchProduct();
   }, [productId]); 
 
-  // --- BARRERAS DE RENDERIZADO ---
-  // Estas comprobaciones van ANTES de usar el objeto 'product'
-
-  // 1. Si está cargando, muestra la barra de progreso y detente
   if (loading) {
     return <progress className="progress is-large is-primary" max="100">Cargando...</progress>;
   }
 
-  // 2. Si hubo un error, muestra el error y detente
   if (error) {
     return (
       <section className="section">
@@ -55,14 +47,9 @@ const ProductDetailPage = () => {
     );
   }
 
-  // 3. Si no está cargando y no hay error, pero 'product' sigue siendo 'null'
-  //    (esto es una seguridad extra), no renderices nada.
   if (!product) {
     return null;
   }
-  
-  // --- RENDERIZADO SEGURO ---
-  // Si el código llega aquí, es 100% seguro que 'product' SÍ tiene datos.
   
   const finalPrice = (product.price * (1 - product.discountPercentage / 100)).toFixed(2);
 

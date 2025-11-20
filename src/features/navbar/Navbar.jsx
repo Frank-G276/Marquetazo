@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.scss';
 import '../../../my-bulma-project.scss'; 
@@ -7,7 +7,6 @@ import { categoryStructure } from '../../data/categoryStructure.jsx';
 import SearchSuggestions from './SearchSuggestions'; 
 import DeliverySelector from '../delivery/DeliverySelector.jsx';
 
-// --- Panel de Subcategorías (Nivel 2) ---
 const SubcategoryPanel = ({ category, onNavigate }) => {
   return (  
     <div className="subcategory-panel menu">
@@ -112,7 +111,7 @@ const Navbar = ({ onCartClick }) => {
       window.removeEventListener("scroll", closeSuggestions);
       window.removeEventListener("userChanged", handleUserChange);
     };
-  }, []); // El array vacío es correcto
+  }, []); 
 
   // --- Manejadores de Eventos ---
   const toggleMenu = () => setIsActive(!isActive); 
@@ -129,10 +128,9 @@ const Navbar = ({ onCartClick }) => {
   // --- FUNCIÓN DE LOGOUT (RE-INTEGRADA) ---
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
-    setCurrentUser(null); // Actualiza el estado
-    // window.dispatchEvent(new Event("userChanged")); // Opcional, ya que estamos actualizando el estado local
+    setCurrentUser(null); 
     navigate("/login", { replace: true });
-    closeDropdown(); // Cierra el menú móvil si está abierto
+    closeDropdown(); 
   };
   
   // NAVEGACIÓN MANUAL (para arreglar el bug de clic)
@@ -317,7 +315,7 @@ const Navbar = ({ onCartClick }) => {
                 
                 <a 
                   className="navbar-item is-icon-text" 
-                  onClick={handleLogout} // Llama a la función de logout
+                  onClick={handleLogout}
                 >
                   <span className="icon"><i className="fas fa-sign-out-alt"></i></span>
                   <span className="is-size-7">Cerrar sesión</span>

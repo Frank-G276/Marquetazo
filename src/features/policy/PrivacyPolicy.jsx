@@ -1,6 +1,3 @@
-// src/features/policy/PrivacyPolicy.jsx
-
-import React from 'react';
 import { Link } from 'react-router-dom';
 import './Policy.scss'; 
 
@@ -8,7 +5,6 @@ const PrivacyPolicy = () => {
   return (
     <div className="policy-page">
       
-      {/* --- 1. Hero --- */}
       <section className="hero is-medium is-primary about-hero">
         <div className="hero-body has-text-centered">
           <p className="title is-1">

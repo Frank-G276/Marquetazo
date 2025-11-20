@@ -1,19 +1,16 @@
-/* Para asegurar que todas las tarjetas en una fila tengan la misma altura */
 .product-card {
     height: 100%;
     display: flex;
     flex-direction: column;
   
     .card-content {
-      flex-grow: 1; /* Empuja el footer hacia abajo */
+      flex-grow: 1;
     }
   
     .card-footer {
-      margin-top: auto; /* Se alinea al fondo */
-    }
+      margin-top: auto;
   }
   
-  /* Para que las imágenes de producto no se estiren y llenen el espacio */
   .card-image figure {
     img {
       object-fit: cover;
@@ -21,3 +18,4 @@
       width: 100%;
     }
   }
+}

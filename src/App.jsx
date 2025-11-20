@@ -1,5 +1,4 @@
 
-import React from 'react';
 import '../my-bulma-project.scss'
 import Home from './features/home/Home';
 import Login from './features/auth/login/Login';

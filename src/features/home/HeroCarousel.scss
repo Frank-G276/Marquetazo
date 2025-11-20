@@ -1,13 +1,9 @@
-// src/features/home/HeroCarousel.scss
-
 .hero-carousel {
-    // Usamos 'is-relative' de Bulma en espíritu
     position: relative; 
     width: 100%;
-    // Proporción panorámica 3:1 (1200x400). Ajusta según tus imágenes.
     aspect-ratio: 16 / 5; 
     overflow: hidden;
-    background-color: var(--bulma-grey-light); // Color de fondo mientras carga
+    background-color: var(--bulma-grey-light);
   }
   
   .carousel-slides {
@@ -22,32 +18,28 @@
     width: 100%;
     height: 100%;
     
-    // El efecto
     opacity: 0;
     transition: opacity 1.2s ease-in-out;
     
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover; // Asegura que la imagen cubra todo sin distorsionarse
+      object-fit: cover;
     }
     
-    // El slide activo se vuelve visible
     &.is-active {
       opacity: 1;
-      z-index: 1; // Se pone por encima de los demás
+      z-index: 1;
     }
   }
   
-  // Estilos para los puntos de navegación
   .carousel-dots {
     position: absolute;
-    bottom: 1.5rem; // Abajo, centrado
+    bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2; // Por encima de las imágenes
+    z-index: 2;
     
-    // Usamos 'is-flex' de Bulma en espíritu
     display: flex;
     gap: 10px;
   }
@@ -56,7 +48,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: var(--bulma-white-ter); // Un blanco suave
+    background-color: var(--bulma-white-ter);
     border: none;
     cursor: pointer;
     opacity: 0.7;
@@ -67,7 +59,6 @@
       transform: scale(1.1);
     }
     
-    // El punto activo usa tu color $primary ($organic-green)
     &.is-active {
       opacity: 1;
       background-color: var(--bulma-primary); 

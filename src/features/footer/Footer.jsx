@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import logoMarquetazo from '../../assets/images/Marquetazo.png'; 
 import './Footer.scss';

@@ -1,18 +1,13 @@
-// src/features/product/ProductDetailPage.scss
-
-// 1. Importamos tus variables para usar el color primario
 @use '../../../my-bulma-project.scss' as vars;
 
 .product-detail-page {
   
-  // Estilo para el precio tachado
   .strikethrough-price {
     text-decoration: line-through;
   }
   
-  // Estilos para la galería de miniaturas
-  .thumbnail-image { // Renombré 'image.is-1by1' para más claridad
-    border: 2px solid #dbdbdb; // Borde gris por defecto
+  .thumbnail-image {
+    border: 2px solid #dbdbdb;
     border-radius: 4px;
     cursor: pointer;
     overflow: hidden;
@@ -24,18 +19,16 @@
     
     &:hover {
       border-color: #aaa;
-      transform: scale(1.05); // Pequeño efecto al pasar el mouse
+      transform: scale(1.05);
     }
 
-    // 2. Estilo para la miniatura activa
     &.is-active {
-      border-color: vars.$organic-green; // Borde verde (tu color primario)
-      box-shadow: 0 0 8px rgba(vars.$organic-green, 0.5); // Sombra sutil
+      border-color: vars.$organic-green;
+      box-shadow: 0 0 8px rgba(vars.$organic-green, 0.5);
       transform: scale(1.05);
     }
   }
 
-  // Estilos para la info en viñetas
   .content ul {
     list-style: none;
     margin-left: 0;

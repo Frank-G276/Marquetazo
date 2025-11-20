@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import ProductCard from '../home/ProductCard'; // Reutilizamos tu tarjeta de producto
+import ProductCard from '../home/ProductCard';
 
 const SearchPage = () => {
-  // Hook para leer los parámetros de búsqueda de la URL
   const [searchParams] = useSearchParams();
-  const query = searchParams.get('q'); // Obtiene el valor de '?q=...'
+  const query = searchParams.get('q');
 
-  // Estados
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!query) return; // No busques si no hay query
+    if (!query) return;
 
     const fetchSearchResults = async () => {
       setLoading(true);
@@ -33,9 +31,8 @@ const SearchPage = () => {
     };
 
     fetchSearchResults();
-  }, [query]); // Se ejecuta cada vez que el 'query' en la URL cambie
+  }, [query]);
 
-  // --- Renderizado ---
   if (loading) {
     return <progress className="progress is-large is-primary" max="100">Buscando...</progress>;
   }

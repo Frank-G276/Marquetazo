@@ -1,6 +1,3 @@
-// src/features/contact/ContactUs.jsx
-
-import React from 'react';
 import './ContactUs.scss';
 
 const ContactUs = () => {
@@ -22,7 +19,6 @@ const ContactUs = () => {
           </div>
           <div className="columns contact-container-card">
             
-            {/* --- PANEL IZQUIERDO (VERDE) --- */}
             <div className="column is-5 contact-info-panel">
               <h3 className="title is-3 has-text-white">Habla con un humano</h3>
               <p className="has-text-white mb-5">

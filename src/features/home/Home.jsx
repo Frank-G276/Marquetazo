@@ -1,4 +1,3 @@
-import React from 'react';
 import HeroCarousel from './HeroCarousel'; 
 import ProductCarousel from './ProductCarousel'; 
 import { useProducts } from '../../hooks/useProducts';

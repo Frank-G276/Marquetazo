@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./DeliverySelector.scss";
 
 const DeliverySelector = () => {
@@ -14,7 +14,6 @@ const DeliverySelector = () => {
     );
   }
 
-  // Claves únicas por usuario
   const modeKey = `deliveryMode_${userEmail}`;
   const addressKey = `deliveryAddress_${userEmail}`;
 

@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import "./profile.scss"; // Reutilizamos los estilos
+import { useState, useRef, useEffect } from "react";
+import "./profile.scss";
 
 const CameraCapture = ({ onPictureTaken, onCancel }) => {
   const videoRef = useRef(null);

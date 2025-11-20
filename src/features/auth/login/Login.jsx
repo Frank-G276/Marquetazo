@@ -1,7 +1,5 @@
-// src/features/auth/Login.jsx
-
 import React, { useState } from 'react';
-import './Login.scss'; // Reutilizamos los mismos estilos
+import './Login.scss'; 
 import { Link } from 'react-router-dom';
 
 const Login = () => {
@@ -28,7 +26,6 @@ const Login = () => {
       // 2. Buscar si el email existe
       const foundUser = users.find(user => user.email === email);
 
-      // 3. Validación: Usuario no encontrado
       if (!foundUser) {
         setError('El correo electrónico no está registrado.');
         setLoading(false);
@@ -42,7 +39,6 @@ const Login = () => {
         return;
       }
 
-      // 5. ¡Éxito!
       setLoading(false);
       setSuccess('¡Inicio de sesión exitoso! Redirigiendo...');
 
@@ -56,9 +52,8 @@ const Login = () => {
       localStorage.setItem('currentUser', JSON.stringify(userSession));
       window.dispatchEvent(new Event('userChanged'));
       
-      // Redirigimos al inicio después de 1.5 segundos
       setTimeout(() => {
-        window.location.href = '/'; // Redirige al Home
+        window.location.href = '/'; 
       }, 1500);
 
     } catch (err) {
@@ -78,7 +73,6 @@ const Login = () => {
                 <h2 className="title is-3 has-text-centered">Iniciar Sesión</h2>
                 
                 <form onSubmit={handleSubmit}>
-                  {/* --- Mensajes de Error o Éxito --- */}
                   {error && (
                     <div className="notification is-danger is-light is-size-7">{error}</div>
                   )}

@@ -1,6 +1,3 @@
-// src/features/about/AboutUs.scss
-
-// Importamos tus variables de color
 @use '../../../my-bulma-project.scss' as vars;
 @use "sass:color" as color;
 .about-us-page {
@@ -13,11 +10,10 @@
     background-position: center;
 
     .title, .subtitle {
-      color: vars.$light-bg; // Texto claro
+      color: vars.$light-bg; 
     }
   }
 
-  // 2. Estilos de la Misión
   .mission-image {
     img {
       border-radius: 12px; 

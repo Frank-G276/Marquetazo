@@ -1,8 +1,5 @@
-// src/features/policy/ShippingPolicy.jsx
-
-import React from 'react';
 import { Link } from 'react-router-dom';
-import './Policy.scss'; // Un archivo SCSS que compartiremos con otras políticas
+import './Policy.scss';
 
 const ShippingPolicy = () => {
   return (
@@ -65,7 +62,6 @@ const ShippingPolicy = () => {
         </div>
       </section>
 
-      {/* --- 3. Costos y Tiempos (La Tabla) --- */}
       <section className="section has-background-light">
         <div className="container">
           <h2 className="title is-2 has-text-centered mb-5">Tiempos y Costos</h2>

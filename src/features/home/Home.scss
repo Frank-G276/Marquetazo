@@ -1,5 +1,4 @@
 .category-section {
-    /* Añadimos un borde sutil (usando tu color $light-grey) */
     border-bottom: 1px solid #E0E0E0;
   
     &:last-child {
@@ -7,7 +6,6 @@
     }
   }
   
-  /* Un poco de espacio para el botón "Ver todo" */
   .has-text-right .button {
     margin-top: 1rem;
   }

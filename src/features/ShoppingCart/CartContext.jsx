@@ -16,23 +16,19 @@ export function CartProvider({ children }) {
     }
   }, []);
 
-  // cargar al montar
   useEffect(() => {
     loadCartForCurrentUser();
   }, [loadCartForCurrentUser]);
-
-  // escuchar evento personalizado para recargar cuando cambie el usuario en la misma pestaña
   useEffect(() => {
     const handler = () => loadCartForCurrentUser();
     window.addEventListener('userChanged', handler);
     return () => window.removeEventListener('userChanged', handler);
   }, [loadCartForCurrentUser]);
 
-  // guardar cada vez que cambie carrito
   useEffect(() => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (!currentUser?.email) return;  // Si no hay usuario, no se guarda
-  if (carrito.length === 0) return; // Evita sobreescribir con [] al cerrar sesión
+  if (!currentUser?.email) return;  
+  if (carrito.length === 0) return; 
 
   const cartKey = `cart_${currentUser.email}`;
   const payload = { email: currentUser.email, items: carrito };

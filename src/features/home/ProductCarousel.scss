@@ -1,32 +1,24 @@
-/* * Este SCSS usa variables de CSS que Bulma ya definió,
- * así que se adapta a tus colores ($primary, $background) automáticamente.
-*/
-
 .carousel-container {
-    // Posición relativa para los efectos de difuminado
     position: relative;
     width: 100%;
   
-    // Efecto 1: Difuminado en los bordes
-    // Se ve muy profesional y le indica al usuario que hay más contenido.
     &::before,
     &::after {
       content: '';
       position: absolute;
       top: 0;
-      bottom: 20px; // Deja espacio para la barra de scroll
+      bottom: 20px;
       width: 60px;
       z-index: 2;
-      pointer-events: none; // Permite hacer clic "a través" de él
+      pointer-events: none;
     }
   
-    // Difuminado izquierdo
     &::before {
       left: 0;
       background: linear-gradient(to right, var(--bulma-background), transparent);
     }
   
-    // Difuminado derecho
+    &::after {
     &::after {
       right: 0;
       background: linear-gradient(to left, var(--bulma-background), transparent);
@@ -34,50 +26,37 @@
   }
   
   .carousel-track {
-    // 1. Convertimos la fila en flexible
     display: flex;
     
-    // 2. Permitimos el scroll horizontal
     overflow-x: auto;
     
-    // 3. Ocultamos la barra de scroll vertical (si aparece por algún motivo)
     overflow-y: hidden;
   
-    // 4. ¡La magia del "snap"!
+    scroll-snap-type: x mandatory;
     scroll-snap-type: x mandatory;
     
-    // Damos un poco de espacio inferior para la barra de scroll personalizada
     padding-bottom: 20px;
     
-    // Hacemos que el scroll sea suave
     scroll-behavior: smooth;
   
-    // Hacemos que tus 'ProductCard' (que son .column) se alineen
     & > .column {
-      // Esto es clave: le dice al scroll dónde "frenar"
       scroll-snap-align: start;
       
-      // Evita que las columnas se encojan
       flex-shrink: 0;
-  
-      // Bulma ya hace esto, pero es bueno asegurarlo:
-      // width: 25%; (en desktop, por tu clase 'is-one-quarter-desktop')
-      // width: 50%; (en tablet, por tu clase 'is-half-tablet')
     }
   
-    // Efecto 2: Barra de scroll personalizada (para Chrome/Safari)
-    // Usa tu color $primary ($organic-green)
     &::-webkit-scrollbar {
       height: 10px;
     }
     
     &::-webkit-scrollbar-track {
-      background-color: var(--bulma-grey-light); // Tu $light-grey
+      background-color: var(--bulma-grey-light); 
       border-radius: 10px;
     }
     
     &::-webkit-scrollbar-thumb {
-      background-color: var(--bulma-primary); // Tu $organic-green
+      background-color: var(--bulma-primary); 
       border-radius: 10px;
     }
   }
+}
