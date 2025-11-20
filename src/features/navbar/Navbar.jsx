@@ -5,9 +5,9 @@ import '../../../my-bulma-project.scss';
 import logoMarquetazo from '../../assets/images/Marquetazo.png';
 import { categoryStructure } from '../../data/categoryStructure.jsx';
 import SearchSuggestions from './SearchSuggestions'; 
-import DeliverySelector from '../delivery/deliverySelector.jsx';
+import DeliverySelector from '../delivery/DeliverySelector.jsx';
 import { useCart } from "../ShoppingCart/CartContext";
-
+ 
 
 const SubcategoryPanel = ({ category, onNavigate }) => {
   return (  
